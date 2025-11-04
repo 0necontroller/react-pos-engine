@@ -412,6 +412,8 @@ Found a bug? We're here to help! Please include:
 - Example scenarios
 - Potential implementation ideas (optional)
 
+## Screenshort 
+![Demo Screenshot](https://i.ibb.co.com/6RCnnhNp/Screenshot-2025-11-04-200216.png)
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
