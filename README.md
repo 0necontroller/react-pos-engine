@@ -123,12 +123,7 @@ Install the package using your preferred package manager:
 # Using npm
 npm install react-pos-engine
 
-# Using yarn
-yarn add react-pos-engine
 
-# Using pnpm
-pnpm add react-pos-engine
-```
 
 ### Basic Setup
 

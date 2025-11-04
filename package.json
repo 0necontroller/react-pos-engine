@@ -1,8 +1,8 @@
 {
   "name": "react-pos-engine",
-  "version": "2.1.4",
+  "version": "2.1.6",
   "description": "A powerful React POS (Point-of-Sale) printing engine with customizable receipt templates and layout options.",
-  "author": "Kazi Nayeem",
+  "author": "Mohammad Ali Nayeem",
   "license": "MIT",
   "keywords": [
     "react",
