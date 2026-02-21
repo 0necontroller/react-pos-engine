@@ -54,11 +54,18 @@ export interface LayoutProps extends PrintOptions {
   formatItemTotal: (item: Item) => string;
 }
 
-export const formatCurrency = (amount: number): string =>
-  `$${(amount / 100).toFixed(2)}`;
-export interface ReceiptContentProps extends PrintOptions {
-  order: Order;
-}
+export const formatCurrency = (amount: number): string => {
+  const value = amount / 100;
+
+  return new Intl.NumberFormat("en-KE", {
+    style: "currency",
+    currency: "KES",
+    currencyDisplay: "code", // ensures it says "KES"
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+};
+
 export const ReceiptContent = React.memo(ReceiptContentComponent);
 export interface DemoContainerProps {
   title: string;
