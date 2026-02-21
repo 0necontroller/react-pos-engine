@@ -3,7 +3,12 @@ import { formatCurrency, Item } from "../types/type";
 export const generateItemTableHtml = (
   items: Item[],
   borderColor: string,
-  hidePrice: boolean
+  hidePrice: boolean,
+  currencyOpts?: {
+    currency?: string;
+    locale?: string;
+    currencyDisplay?: "symbol" | "code" | "name";
+  },
 ): string => {
   const priceHeaders = hidePrice
     ? ""
@@ -18,11 +23,12 @@ export const generateItemTableHtml = (
           hidePrice
             ? ""
             : `<td style="text-align: right; padding: 2px 0;">${formatCurrency(
-                item.price * item.quantity
+                item.price * item.quantity,
+                currencyOpts,
               )}</td>`
         }
     </tr>
-  `
+  `,
     )
     .join("");
 

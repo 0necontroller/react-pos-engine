@@ -57,6 +57,11 @@ export interface LayoutProps extends PrintOptions {
   order: Order;
   alignStyle: "left" | "center" | "right";
   formatItemTotal: (item: Item) => string;
+  currencyOpts: {
+    currency?: string;
+    locale?: string;
+    currencyDisplay?: "symbol" | "code" | "name";
+  };
 }
 
 export interface ReceiptContentProps extends Partial<PrintOptions> {

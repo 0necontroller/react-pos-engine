@@ -11,6 +11,7 @@ export const Layout5_StackedSummary: React.FC<LayoutProps> = memo(
     formatItemTotal,
     showTaxBreakdown,
     alignStyle,
+    currencyOpts,
   }) => (
     <div className="p-6 space-y-4 font-serif text-gray-700 text-left border-2 border-gray-100">
       <header className="pb-4">
@@ -20,7 +21,7 @@ export const Layout5_StackedSummary: React.FC<LayoutProps> = memo(
         <p
           className={`text-sm mt-1 pb-3 border-b-4 ${primaryColor.replace(
             "text-",
-            "border-"
+            "border-",
           )}`}
         >
           Order Reference: <span className="font-semibold">{order.id}</span>
@@ -35,21 +36,25 @@ export const Layout5_StackedSummary: React.FC<LayoutProps> = memo(
           <div className="flex justify-between text-sm">
             <span>Subtotal:</span>
             <span className="font-medium">
-              {formatCurrency(order.subtotal)}
+              {formatCurrency(order.subtotal, currencyOpts)}
             </span>
           </div>
           <div className="flex justify-between text-sm mt-1">
             <span>Tax:</span>
-            <span className="font-medium">{formatCurrency(order.tax)}</span>
+            <span className="font-medium">
+              {formatCurrency(order.tax, currencyOpts)}
+            </span>
           </div>
           <div
             className={`flex justify-between text-xl font-bold mt-3 pt-2 border-t-2 ${primaryColor.replace(
               "text-",
-              "border-"
+              "border-",
             )}`}
           >
             <span>TOTAL DUE:</span>
-            <span className={primaryColor}>{formatCurrency(order.total)}</span>
+            <span className={primaryColor}>
+              {formatCurrency(order.total, currencyOpts)}
+            </span>
           </div>
         </div>
       )}
@@ -67,5 +72,5 @@ export const Layout5_StackedSummary: React.FC<LayoutProps> = memo(
         Processed on: {new Date(order.date).toLocaleString()}
       </footer>
     </div>
-  )
+  ),
 );

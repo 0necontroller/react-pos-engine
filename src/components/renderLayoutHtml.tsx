@@ -4,7 +4,7 @@ import { generateItemTableHtml } from "./generateItemTableHtml";
 export const renderLayoutHtml = (
   orderData: Order,
   options: PrintOptions,
-  alignStyle: string
+  alignStyle: string,
 ): string => {
   const {
     layout,
@@ -15,21 +15,27 @@ export const renderLayoutHtml = (
     sellerName,
     showSignature,
     showTaxBreakdown,
+    currency,
+    locale,
+    currencyDisplay,
   } = options;
+
+  const currencyOpts = { currency, locale, currencyDisplay };
 
   // Determines if we use the simple kitchen item table format (no prices)
   const isKitchenLayout = layout === 6;
   const itemTable = generateItemTableHtml(
     orderData.items,
     borderColor,
-    isKitchenLayout
+    isKitchenLayout,
+    currencyOpts,
   );
 
   // Helper function for the main title/store name
   const baseHeader = (title: string, color: string) => `
     <h1 style="font-size: 1.4em; margin: 5px 0; color: ${color}; text-transform: uppercase;">${
-    title || "The Store Name"
-  }</h1>
+      title || "The Store Name"
+    }</h1>
   `;
 
   // Common POS Footer (Subtotal/Tax breakdown)
@@ -37,10 +43,12 @@ export const renderLayoutHtml = (
     ? `
     <footer style="border-top: 1px dashed ${borderColor}; padding-top: 5px; text-align: ${alignStyle};">
       <p style="margin: 2px 0; display: flex; justify-content: space-between;"><span>Subtotal:</span><span style="font-weight: bold;">${formatCurrency(
-        orderData.subtotal
+        orderData.subtotal,
+        currencyOpts,
       )}</span></p>
       <p style="margin: 2px 0; display: flex; justify-content: space-between;"><span>Tax:</span><span style="font-weight: bold;">${formatCurrency(
-        orderData.tax
+        orderData.tax,
+        currencyOpts,
       )}</span></p>
     </footer>
   `
@@ -54,7 +62,7 @@ export const renderLayoutHtml = (
         layout === 2
           ? orderData.customFields
               .map(
-                (f) => `<p style="font-size: 0.9em;">${f.key}: ${f.value}</p>`
+                (f) => `<p style="font-size: 0.9em;">${f.key}: ${f.value}</p>`,
               )
               .join("")
           : "";
@@ -64,8 +72,8 @@ export const renderLayoutHtml = (
           ${baseHeader(headerText, primaryColor)}
           <p style="margin: 2px 0;">Order #: ${orderData.id}</p>
           <p style="margin: 5px 0 10px 0; border-bottom: 1px dashed ${borderColor}; padding-bottom: 5px;">Date: ${new Date(
-        orderData.date
-      ).toLocaleDateString()}</p>
+            orderData.date,
+          ).toLocaleDateString()}</p>
           ${customFieldsHtml}
         </header>
         ${itemTable}
@@ -85,12 +93,14 @@ export const renderLayoutHtml = (
       const totalsSummary = `
         <div style="margin-top: 50px; text-align: right; border-top: 1px solid ${borderColor}; padding-top: 10px;">
           <p style="margin: 2px 0;">Subtotal: ${formatCurrency(
-            orderData.subtotal
+            orderData.subtotal,
+            currencyOpts,
           )}</p>
-          <p style="margin: 2px 0;">Tax: ${formatCurrency(orderData.tax)}</p>
+          <p style="margin: 2px 0;">Tax: ${formatCurrency(orderData.tax, currencyOpts)}</p>
           <h3 style="margin: 5px 0; color: ${primaryColor};">GRAND TOTAL: ${formatCurrency(
-        orderData.total
-      )}</h3>
+            orderData.total,
+            currencyOpts,
+          )}</h3>
         </div>
       `;
 
@@ -144,7 +154,7 @@ export const renderLayoutHtml = (
         <h2 
           style="font-size: 1.6em; margin: 10px 0; padding: 5px 0; border-top: 3px double ${primaryColor}; text-align: ${alignStyle}; color: ${primaryColor}; font-weight: 900;"
         >
-            TOTAL: ${formatCurrency(orderData.total)}
+            TOTAL: ${formatCurrency(orderData.total, currencyOpts)}
         </h2>
       `;
       return `
@@ -171,7 +181,7 @@ export const renderLayoutHtml = (
           <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em; width: 10%;">${item.quantity}X</td>
           <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em;">${item.name}</td>
         </tr>
-      `
+      `,
         )
         .join("");
 
@@ -194,7 +204,8 @@ export const renderLayoutHtml = (
         <div style="background-color: #F0FFF0; border: 1px solid ${primaryColor}; padding: 8px; margin-bottom: 10px;">
             <h3 style="margin: 0; font-size: 1.1em; color: green;">🎉 SPECIAL OFFER! 🎉</h3>
             <p style="margin: 2px 0; font-size: 0.9em;">You saved ${formatCurrency(
-              orderData.tax / 2
+              orderData.tax / 2,
+              currencyOpts,
             )} today!</p>
         </div>
       `;
@@ -202,15 +213,16 @@ export const renderLayoutHtml = (
         <header style="padding: 5px 0; border-bottom: 1px solid ${borderColor}; margin-bottom: 10px;">
             ${baseHeader(headerText, primaryColor)}
             <p style="margin: 2px 0; font-size: 0.9em;">Date: ${new Date(
-              orderData.date
+              orderData.date,
             ).toLocaleDateString()}</p>
         </header>
         ${offerBlock}
         ${itemTable}
         ${posFooter}
         <h2 style="font-size: 1.5em; margin: 10px 0; color: ${primaryColor};">TOTAL: ${formatCurrency(
-        orderData.total
-      )}</h2>
+          orderData.total,
+          currencyOpts,
+        )}</h2>
         <p style="font-size: 0.8em; margin-top: 10px;">Visit us online at example.com!</p>
       `;
 
@@ -222,21 +234,21 @@ export const renderLayoutHtml = (
                   orderData.customer.name
                 }</p>
                 <p style="margin: 2px 0;">Date: ${new Date(
-                  orderData.date
+                  orderData.date,
                 ).toLocaleDateString()}</p>
             </div>
             <div style="text-align: right; font-weight: bold;">
                 <p style="margin: 2px 0; color: ${primaryColor};">Order Ref: ${
-        orderData.id
-      }</p>
+                  orderData.id
+                }</p>
             </div>
         </div>
       `;
       return `
         <header style="background-color: ${headerBgColor}; padding: 10px 5px; border-bottom: 3px solid ${primaryColor};">
           <p style="margin: 0; font-size: 0.9em; text-transform: uppercase; color: ${primaryColor};">${
-        headerText || "INVOICE"
-      }</p>
+            headerText || "INVOICE"
+          }</p>
           <h1 style="font-size: 1.8em; margin: 5px 0 0 0; color: #000;">${
             sellerName || "Finance Tracker"
           }</h1>
@@ -249,7 +261,7 @@ export const renderLayoutHtml = (
     case 9: // Sleek Underline
       const totalUnderline = `
         <h2 style="font-size: 1.5em; margin: 10px 0; padding-bottom: 5px; border-bottom: 3px double ${primaryColor}; color: ${primaryColor};">
-            GRAND TOTAL: ${formatCurrency(orderData.total)}
+            GRAND TOTAL: ${formatCurrency(orderData.total, currencyOpts)}
         </h2>
       `;
       return `
@@ -279,7 +291,7 @@ export const renderLayoutHtml = (
         <header style="padding: 10px 0; border-bottom: 2px solid ${borderColor}; margin-bottom: 10px; text-align: ${alignStyle};">
           ${baseHeader(headerText, primaryColor)}
           <p style="margin: 2px 0;">Date: ${new Date(
-            orderData.date
+            orderData.date,
           ).toLocaleDateString()}</p>
         </header>
         ${itemTable}
@@ -291,8 +303,8 @@ export const renderLayoutHtml = (
         <header style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid ${primaryColor}; margin-bottom: 10px;">
             <div style="text-align: left;">
                 <h1 style="font-size: 1.2em; margin: 0; color: ${primaryColor};">${
-        headerText || "The Shop"
-      }</h1>
+                  headerText || "The Shop"
+                }</h1>
                 <p style="margin: 2px 0; font-size: 0.8em;">Receipt</p>
             </div>
             <div style="text-align: right;">
@@ -300,7 +312,7 @@ export const renderLayoutHtml = (
                   orderData.id
                 }</p>
                 <p style="margin: 2px 0; font-size: 0.8em;">${new Date(
-                  orderData.date
+                  orderData.date,
                 ).toLocaleTimeString()}</p>
             </div>
         </header>
@@ -317,8 +329,9 @@ export const renderLayoutHtml = (
             ${posFooter}
         </div>
         <h2 style="font-size: 1.5em; margin: 5px 0; color: ${primaryColor}; text-align: ${alignStyle};">TOTAL: ${formatCurrency(
-        orderData.total
-      )}</h2>
+          orderData.total,
+          currencyOpts,
+        )}</h2>
       `;
       return `
         <header style="padding: 5px 0; margin-bottom: 10px; border-bottom: 1px dashed ${borderColor};">
@@ -336,15 +349,16 @@ export const renderLayoutHtml = (
         <div style="margin-top: 10px; padding: 5px 0; border-top: 1px solid ${borderColor}; text-align: ${alignStyle};">
           <p style="font-weight: bold; font-size: 1.1em; color: ${primaryColor};">Total Payable:</p>
           <h2 style="font-size: 2em; margin: 2px 0; color: ${primaryColor};">${formatCurrency(
-        orderData.total
-      )}</h2>
+            orderData.total,
+            currencyOpts,
+          )}</h2>
         </div>
       `;
       return `
         <header style="padding: 10px 0; border-bottom: 5px double ${primaryColor}; margin-bottom: 10px;">
           <h1 style="font-size: 1.6em; margin: 0; color: ${primaryColor};">${
-        headerText || "Item Focus Receipt"
-      }</h1>
+            headerText || "Item Focus Receipt"
+          }</h1>
           <p style="margin: 5px 0 0 0; font-size: 0.8em;">Order: ${
             orderData.id
           } | Date: ${new Date(orderData.date).toLocaleDateString()}</p>
@@ -376,7 +390,7 @@ export const renderLayoutHtml = (
             headerText || "Online Order Receipt"
           }</h1>
           <p style="margin: 2px 0; font-size: 0.9em;">Order placed: ${new Date(
-            orderData.date
+            orderData.date,
           ).toLocaleDateString()}</p>
         </header>
         ${shippingBlock}
@@ -392,14 +406,14 @@ export const renderLayoutHtml = (
           }</h1>
           <p style="margin: 5px 0; border-top: 1px dashed ${borderColor}; padding-top: 5px; font-size: 0.9em;">
             TID: ${orderData.id} | ${new Date(
-        orderData.date
-      ).toLocaleDateString()}
+              orderData.date,
+            ).toLocaleDateString()}
           </p>
         </header>
       `;
       const minimalistTotal = `
         <h2 style="font-size: 1.4em; margin: 5px 0; border-top: 1px dashed ${borderColor}; padding-top: 5px; text-align: ${alignStyle};">
-            Total: ${formatCurrency(orderData.total)}
+            Total: ${formatCurrency(orderData.total, currencyOpts)}
         </h2>
       `;
       return `
@@ -425,15 +439,15 @@ export const renderLayoutHtml = (
         </header>
         <div style="background-color: ${secondaryColor}20; padding: 5px; margin: 10px 0; text-align: ${alignStyle};">
             <p style="margin: 0; font-size: 0.9em; color: ${secondaryColor}; font-weight: bold;">Thank You, ${
-        orderData.customer.name
-      }!</p>
+              orderData.customer.name
+            }!</p>
         </div>
       `;
       const tropicalTotal = `
         <div style="margin-top: 10px; padding: 8px; background-color: ${secondaryColor}; color: #fff;">
             <h2 style="font-size: 1.8em; margin: 0; display: flex; justify-content: space-between;">
                 <span>GRAND TOTAL</span>
-                <span>${formatCurrency(orderData.total)}</span>
+                <span>${formatCurrency(orderData.total, currencyOpts)}</span>
             </h2>
         </div>
       `;

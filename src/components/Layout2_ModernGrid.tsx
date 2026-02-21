@@ -10,12 +10,13 @@ export const Layout2_ModernGrid: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-6 space-y-4 font-sans text-gray-800 text-left">
       <header
         className={`pb-4 border-b-4 ${primaryColor.replace(
           "text-",
-          "border-"
+          "border-",
         )}`}
       >
         <h1 className={`text-3xl font-extrabold ${primaryColor}`}>
@@ -41,22 +42,26 @@ export const Layout2_ModernGrid: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-medium">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-medium">{formatCurrency(order.tax)}</span>
+              <span className="font-medium">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
           <div
             className={`col-span-1 p-3 rounded-lg ${primaryColor.replace(
               "text-",
-              "bg-"
+              "bg-",
             )} text-white font-bold flex flex-col items-center justify-center`}
           >
             <p className="text-xs opacity-80">TOTAL DUE</p>
-            <p className="text-2xl">{formatCurrency(order.total)}</p>
+            <p className="text-2xl">
+              {formatCurrency(order.total, currencyOpts)}
+            </p>
           </div>
         </footer>
       )}
@@ -64,5 +69,5 @@ export const Layout2_ModernGrid: React.FC<LayoutProps> = memo(
         Thank you for choosing us! Visit us at example.com
       </div>
     </div>
-  )
+  ),
 );

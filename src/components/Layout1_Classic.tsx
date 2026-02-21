@@ -11,6 +11,7 @@ export const Layout1_Classic: React.FC<LayoutProps> = React.memo(
     formatItemTotal,
     showTaxBreakdown,
     alignStyle,
+    currencyOpts,
   }) => (
     <>
       <header style={{ backgroundColor: "transparent", padding: "5px 0" }}>
@@ -57,7 +58,7 @@ export const Layout1_Classic: React.FC<LayoutProps> = React.memo(
           >
             <span>Subtotal:</span>
             <span style={{ fontWeight: "bold" }}>
-              {formatCurrency(order.subtotal)}
+              {formatCurrency(order.subtotal, currencyOpts)}
             </span>
           </p>
           <p
@@ -69,11 +70,11 @@ export const Layout1_Classic: React.FC<LayoutProps> = React.memo(
           >
             <span>Tax:</span>
             <span style={{ fontWeight: "bold" }}>
-              {formatCurrency(order.tax)}
+              {formatCurrency(order.tax, currencyOpts)}
             </span>
           </p>
         </footer>
       )}
     </>
-  )
+  ),
 );

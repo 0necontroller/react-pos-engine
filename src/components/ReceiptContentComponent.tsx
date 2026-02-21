@@ -43,13 +43,20 @@ export const ReceiptContentComponent: React.FC<ReceiptContentProps> = ({
   sellerName = "",
   showSignature = false,
   showTaxBreakdown = false,
+  currency,
+  locale,
+  currencyDisplay,
 }) => {
   const alignStyle =
     alignment === "start" ? "left" : alignment === "end" ? "right" : "center";
   const paper = PAPER_SIZES["58mm"] || PAPER_SIZES["58mm"];
+
+  const currencyOpts = { currency, locale, currencyDisplay };
+
   const formatItemTotal = useCallback(
-    (item: Item) => formatCurrency(item.price * item.quantity),
-    [],
+    (item: Item) => formatCurrency(item.price * item.quantity, currencyOpts),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currency, locale, currencyDisplay],
   );
 
   const commonProps: LayoutProps = {
@@ -72,6 +79,7 @@ export const ReceiptContentComponent: React.FC<ReceiptContentProps> = ({
     logoUrl,
     showTaxBreakdown,
     customCss: "",
+    currencyOpts,
   };
 
   let content;
@@ -177,7 +185,7 @@ export const ReceiptContentComponent: React.FC<ReceiptContentProps> = ({
           >
             <span>GRAND TOTAL:</span>
             <span style={{ fontWeight: "900" }}>
-              {formatCurrency(order.total)}
+              {formatCurrency(order.total, currencyOpts)}
             </span>
           </h2>
         )}

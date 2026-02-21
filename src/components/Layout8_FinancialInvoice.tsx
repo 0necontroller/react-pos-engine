@@ -11,6 +11,7 @@ export const Layout8_FinancialInvoice: React.FC<LayoutProps> = memo(
     showTaxBreakdown,
     borderColor,
     alignStyle,
+    currencyOpts,
   }) => {
     // Calculate approximate tax rate for display purposes
     const taxRate =
@@ -43,7 +44,7 @@ export const Layout8_FinancialInvoice: React.FC<LayoutProps> = memo(
             <div className="flex justify-end mt-1 space-x-12">
               <span className="font-normal w-1/4 text-left">Subtotal:</span>
               <span className="font-medium w-1/4">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-end mt-1 space-x-12">
@@ -51,18 +52,20 @@ export const Layout8_FinancialInvoice: React.FC<LayoutProps> = memo(
                 Tax ({taxRate}%):
               </span>
               <span className="font-medium w-1/4">
-                {formatCurrency(order.tax)}
+                {formatCurrency(order.tax, currencyOpts)}
               </span>
             </div>
             <div
               className={`flex justify-end mt-3 text-2xl font-extrabold pt-3 border-t-8 border-b-2 border-gray-900 space-x-12`}
             >
               <span className="w-1/4 text-left">AMOUNT DUE:</span>
-              <span className="w-1/4">{formatCurrency(order.total)}</span>
+              <span className="w-1/4">
+                {formatCurrency(order.total, currencyOpts)}
+              </span>
             </div>
           </footer>
         )}
       </div>
     );
-  }
+  },
 );

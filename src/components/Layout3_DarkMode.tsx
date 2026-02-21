@@ -12,6 +12,7 @@ export const Layout3_DarkMode: React.FC<LayoutProps> = memo(
     showTaxBreakdown,
     borderColor,
     alignStyle,
+    currencyOpts,
   }) => (
     <div className="max-w-md w-full mx-auto p-6 space-y-5 font-mono text-gray-100 bg-gray-900/90 border border-gray-700/50 rounded-xl shadow-2xl shadow-black/50 backdrop-blur-sm transition duration-300 hover:shadow-emerald-900/50">
       {/* HEADER */}
@@ -48,13 +49,13 @@ export const Layout3_DarkMode: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-medium text-gray-100">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
               <span className="font-medium text-gray-100">
-                {formatCurrency(order.tax)}
+                {formatCurrency(order.tax, currencyOpts)}
               </span>
             </div>
           </div>
@@ -64,7 +65,7 @@ export const Layout3_DarkMode: React.FC<LayoutProps> = memo(
             className={`flex justify-between mt-3 text-2xl font-extrabold ${primaryColor} pt-3 border-t border-gray-700`}
           >
             <span>TOTAL:</span>
-            <span>{formatCurrency(order.total)}</span>
+            <span>{formatCurrency(order.total, currencyOpts)}</span>
           </div>
         </footer>
       )}
@@ -76,5 +77,5 @@ export const Layout3_DarkMode: React.FC<LayoutProps> = memo(
         *** transaction complete ***
       </div>
     </div>
-  )
+  ),
 );

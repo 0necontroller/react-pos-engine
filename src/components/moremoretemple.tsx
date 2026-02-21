@@ -19,13 +19,14 @@ const Layout9_SleekUnderline: React.FC<LayoutProps> = memo(
     formatItemTotal,
     showTaxBreakdown,
     alignStyle,
+    currencyOpts,
   }) => {
     const textAlignClass =
       alignStyle === "left"
         ? "text-left"
         : alignStyle === "right"
-        ? "text-right"
-        : "text-center";
+          ? "text-right"
+          : "text-center";
 
     return (
       <div
@@ -34,7 +35,7 @@ const Layout9_SleekUnderline: React.FC<LayoutProps> = memo(
         <header
           className={`pb-3 ${getBorderClass(
             primaryColor,
-            "border-b-4"
+            "border-b-4",
           )} border-solid`}
         >
           <h1
@@ -65,13 +66,13 @@ const Layout9_SleekUnderline: React.FC<LayoutProps> = memo(
               <div className="flex justify-between w-full max-w-xs space-x-4">
                 <span className="text-left">Subtotal:</span>
                 <span className="font-medium text-right">
-                  {formatCurrency(order.subtotal)}
+                  {formatCurrency(order.subtotal, currencyOpts)}
                 </span>
               </div>
               <div className="flex justify-between w-full max-w-xs space-x-4 mt-1">
                 <span className="text-left">Tax:</span>
                 <span className="font-medium text-right">
-                  {formatCurrency(order.tax)}
+                  {formatCurrency(order.tax, currencyOpts)}
                 </span>
               </div>
             </>
@@ -80,18 +81,18 @@ const Layout9_SleekUnderline: React.FC<LayoutProps> = memo(
           <div
             className={`flex justify-between w-full max-w-xs mt-3 text-2xl font-bold pt-3 ${getBorderClass(
               primaryColor,
-              "border-t-2"
+              "border-t-2",
             )}`}
           >
             <span className="text-left">TOTAL:</span>
             <span className={`text-right ${primaryColor}`}>
-              {formatCurrency(order.total)}
+              {formatCurrency(order.total, currencyOpts)}
             </span>
           </div>
         </div>
       </div>
     );
-  }
+  },
 );
 
 // --- Layout 10: Pill Header ---
@@ -104,13 +105,14 @@ const Layout10_PillHeader: React.FC<LayoutProps> = memo(
     formatItemTotal,
     showTaxBreakdown,
     alignStyle,
+    currencyOpts,
   }) => {
     const textAlignClass =
       alignStyle === "left"
         ? "text-left"
         : alignStyle === "right"
-        ? "text-right"
-        : "text-center";
+          ? "text-right"
+          : "text-center";
 
     return (
       <div
@@ -118,7 +120,7 @@ const Layout10_PillHeader: React.FC<LayoutProps> = memo(
       >
         <div
           className={`inline-block px-6 py-2 text-xl font-bold uppercase rounded-full ${getBgClass(
-            primaryColor
+            primaryColor,
           )} text-white shadow-md mb-4`}
         >
           {headerText || "Checkout Receipt"}
@@ -146,13 +148,13 @@ const Layout10_PillHeader: React.FC<LayoutProps> = memo(
             <div className="flex justify-between w-full max-w-xs space-x-8">
               <span className="text-left">Subtotal:</span>
               <span className="font-medium text-right">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between w-full max-w-xs space-x-8 mt-1">
               <span className="text-left">Tax:</span>
               <span className="font-medium text-right">
-                {formatCurrency(order.tax)}
+                {formatCurrency(order.tax, currencyOpts)}
               </span>
             </div>
           </div>
@@ -161,17 +163,17 @@ const Layout10_PillHeader: React.FC<LayoutProps> = memo(
         <div
           className={`pt-3 mt-3 text-2xl font-extrabold ${getBorderClass(
             primaryColor,
-            "border-t-4"
+            "border-t-4",
           )} border-double flex justify-between w-full max-w-xs mx-auto`}
         >
           <span className="text-left">AMOUNT:</span>
           <span className={`text-right ${primaryColor}`}>
-            {formatCurrency(order.total)}
+            {formatCurrency(order.total, currencyOpts)}
           </span>
         </div>
       </div>
     );
-  }
+  },
 );
 
 // --- Layout 11: Split Header ---
@@ -183,6 +185,7 @@ const Layout11_SplitHeader: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-4 space-y-4 font-sans text-gray-800 text-left">
       <header className="pb-4 border-b border-gray-300">
@@ -193,7 +196,7 @@ const Layout11_SplitHeader: React.FC<LayoutProps> = memo(
         </h1>
         <div
           className={`grid grid-cols-2 gap-4 text-sm font-medium border-t-2 border-b-2 ${getBorderClass(
-            primaryColor
+            primaryColor,
           )} py-2`}
         >
           <div>
@@ -222,27 +225,31 @@ const Layout11_SplitHeader: React.FC<LayoutProps> = memo(
               <div className="flex justify-between">
                 <span>Subtotal:</span>
                 <span className="font-medium">
-                  {formatCurrency(order.subtotal)}
+                  {formatCurrency(order.subtotal, currencyOpts)}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Tax:</span>
-                <span className="font-medium">{formatCurrency(order.tax)}</span>
+                <span className="font-medium">
+                  {formatCurrency(order.tax, currencyOpts)}
+                </span>
               </div>
             </>
           )}
           <div
             className={`flex justify-between pt-2 mt-2 text-2xl font-bold border-t ${getBorderClass(
-              primaryColor
+              primaryColor,
             )}`}
           >
             <span>TOTAL:</span>
-            <span className={primaryColor}>{formatCurrency(order.total)}</span>
+            <span className={primaryColor}>
+              {formatCurrency(order.total, currencyOpts)}
+            </span>
           </div>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 // --- Layout 12: Boxed Summary ---
@@ -255,6 +262,7 @@ const Layout12_BoxedSummary: React.FC<LayoutProps> = memo(
     formatItemTotal,
     showTaxBreakdown,
     alignStyle,
+    currencyOpts,
   }) => (
     <div className={`p-4 space-y-4 font-sans text-gray-800 text-${alignStyle}`}>
       <header className="pb-4 border-b border-dashed border-gray-400">
@@ -273,9 +281,9 @@ const Layout12_BoxedSummary: React.FC<LayoutProps> = memo(
       {/* Boxed Totals Section */}
       <div
         className={`mt-6 p-4 rounded-lg shadow-inner ${getBgClass(
-          primaryColor
+          primaryColor,
         ).replace("text-", "bg-")} bg-opacity-10 border ${getBorderClass(
-          primaryColor
+          primaryColor,
         )}`}
       >
         <p className="text-sm font-medium text-gray-600 mb-2">SUMMARY</p>
@@ -284,22 +292,26 @@ const Layout12_BoxedSummary: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-medium">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-medium">{formatCurrency(order.tax)}</span>
+              <span className="font-medium">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
         )}
         <div className="flex justify-between pt-1 text-2xl font-extrabold">
           <span>AMOUNT DUE:</span>
-          <span className={primaryColor}>{formatCurrency(order.total)}</span>
+          <span className={primaryColor}>
+            {formatCurrency(order.total, currencyOpts)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 // --- Layout 13: Item Emphasis ---
@@ -311,6 +323,7 @@ const Layout13_ItemEmphasis: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-4 space-y-5 font-sans text-gray-800 text-left">
       <header className="pb-2 border-b-2 border-dashed border-gray-400">
@@ -345,7 +358,7 @@ const Layout13_ItemEmphasis: React.FC<LayoutProps> = memo(
               </span>
             </div>
             <p className="text-xs text-gray-500 italic">
-              @ {formatCurrency(item.price)} each
+              @ {formatCurrency(item.price, currencyOpts)} each
             </p>
           </div>
         ))}
@@ -358,27 +371,31 @@ const Layout13_ItemEmphasis: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-medium">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-medium">{formatCurrency(order.tax)}</span>
+              <span className="font-medium">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
         )}
         <div
           className={`mt-3 pt-3 flex justify-between text-3xl font-extrabold ${getBorderClass(
             primaryColor,
-            "border-t-4"
+            "border-t-4",
           )}`}
         >
           <span>FINAL:</span>
-          <span className={primaryColor}>{formatCurrency(order.total)}</span>
+          <span className={primaryColor}>
+            {formatCurrency(order.total, currencyOpts)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 // --- Layout 14: E-Commerce / Shipping ---
@@ -390,11 +407,12 @@ const Layout14_ECommerce: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-4 space-y-5 font-sans text-gray-800 text-left">
       <header
         className={`py-3 px-4 ${getBgClass(
-          primaryColor
+          primaryColor,
         )} text-white rounded-t-lg`}
       >
         <h1 className="text-xl font-extrabold">
@@ -433,12 +451,14 @@ const Layout14_ECommerce: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-medium">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-medium">{formatCurrency(order.tax)}</span>
+              <span className="font-medium">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
         )}
@@ -446,11 +466,13 @@ const Layout14_ECommerce: React.FC<LayoutProps> = memo(
           className={`mt-3 pt-3 flex justify-between text-2xl font-extrabold border-t-2 border-gray-400`}
         >
           <span>TOTAL CHARGED:</span>
-          <span className={primaryColor}>{formatCurrency(order.total)}</span>
+          <span className={primaryColor}>
+            {formatCurrency(order.total, currencyOpts)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 // --- Layout 15: Minimalist ---
@@ -462,6 +484,7 @@ const Layout15_Minimalist: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-4 space-y-5 font-sans text-gray-800 text-left">
       <header className="pb-4 border-b border-gray-300">
@@ -486,12 +509,14 @@ const Layout15_Minimalist: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-normal">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-normal">{formatCurrency(order.tax)}</span>
+              <span className="font-normal">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
         )}
@@ -499,23 +524,32 @@ const Layout15_Minimalist: React.FC<LayoutProps> = memo(
           className={`mt-3 pt-3 flex justify-between text-xl font-bold border-t-2 border-gray-400`}
         >
           <span>Total:</span>
-          <span className={primaryColor}>{formatCurrency(order.total)}</span>
+          <span className={primaryColor}>
+            {formatCurrency(order.total, currencyOpts)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 // --- Layout 16: Vibrant Tropical ---
 const Layout16_VibrantTropical: React.FC<LayoutProps> = memo(
-  ({ order, primaryColor, headerText, formatItemTotal, showTaxBreakdown }) => {
+  ({
+    order,
+    primaryColor,
+    headerText,
+    formatItemTotal,
+    showTaxBreakdown,
+    currencyOpts,
+  }) => {
     const accentColor = "text-amber-500";
 
     return (
       <div className="p-4 space-y-5 font-sans text-gray-900 text-center">
         <header
           className={`py-4 px-4 ${getBgClass(
-            primaryColor
+            primaryColor,
           )} text-white shadow-lg rounded-b-xl`}
         >
           <h1 className="text-3xl font-black uppercase tracking-wider">
@@ -524,7 +558,7 @@ const Layout16_VibrantTropical: React.FC<LayoutProps> = memo(
           <p
             className={`text-sm mt-1 font-bold ${accentColor.replace(
               "text-",
-              "text-"
+              "text-",
             )}`}
           >
             Order ID: {order.id}
@@ -556,34 +590,38 @@ const Layout16_VibrantTropical: React.FC<LayoutProps> = memo(
             <div
               className={`text-base space-y-1 border-t pt-2 border-dashed ${accentColor.replace(
                 "text-",
-                "border-"
+                "border-",
               )}`}
             >
               <div className="flex justify-between">
                 <span>Subtotal:</span>
                 <span className="font-medium">
-                  {formatCurrency(order.subtotal)}
+                  {formatCurrency(order.subtotal, currencyOpts)}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Tax:</span>
-                <span className="font-medium">{formatCurrency(order.tax)}</span>
+                <span className="font-medium">
+                  {formatCurrency(order.tax, currencyOpts)}
+                </span>
               </div>
             </div>
           )}
           <div
             className={`mt-3 pt-3 flex justify-between text-3xl font-black ${getBorderClass(
               primaryColor,
-              "border-t-8"
+              "border-t-8",
             )} border-double`}
           >
             <span>TOTAL:</span>
-            <span className={primaryColor}>{formatCurrency(order.total)}</span>
+            <span className={primaryColor}>
+              {formatCurrency(order.total, currencyOpts)}
+            </span>
           </div>
         </div>
       </div>
     );
-  }
+  },
 );
 
 // --- Layout 17: Condensed ---
@@ -595,6 +633,7 @@ const Layout17_Condensed: React.FC<LayoutProps> = memo(
     headerText,
     formatItemTotal,
     showTaxBreakdown,
+    currencyOpts,
   }) => (
     <div className="p-2 space-y-2 font-mono text-gray-900 text-center text-sm">
       <header className="pb-2 border-b-2 border-dashed border-gray-400">
@@ -630,26 +669,30 @@ const Layout17_Condensed: React.FC<LayoutProps> = memo(
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span className="font-normal">
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
-              <span className="font-normal">{formatCurrency(order.tax)}</span>
+              <span className="font-normal">
+                {formatCurrency(order.tax, currencyOpts)}
+              </span>
             </div>
           </div>
         )}
         <div
           className={`mt-2 pt-2 flex justify-between text-base font-bold border-t border-solid ${getBorderClass(
-            primaryColor
+            primaryColor,
           )}`}
         >
           <span>TOTAL PAID:</span>
-          <span className={primaryColor}>{formatCurrency(order.total)}</span>
+          <span className={primaryColor}>
+            {formatCurrency(order.total, currencyOpts)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  ),
 );
 
 export {

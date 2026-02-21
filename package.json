@@ -1,6 +1,6 @@
 {
   "name": "react-receipts",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A powerful React POS (Point-of-Sale) printing engine with customizable receipt templates and layout options.",
   "author": "Mohammad Ali Nayeem",
   "license": "MIT",
@@ -75,7 +75,7 @@
   "dependencies": {
     "lucide-react": "^0.552.0",
     "path": "^0.12.7",
-    "react-receipts": "^3.0.1"
+    "react-receipts": "^3.0.2"
   },
   "devDependencies": {
     "@types/node": "^24.9.2",

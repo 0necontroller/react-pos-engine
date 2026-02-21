@@ -12,6 +12,7 @@ export const LayoutPlaceholder: React.FC<{ layoutNum: number } & LayoutProps> =
       headerBgColor,
       showTaxBreakdown,
       alignStyle,
+      currencyOpts,
     }) => (
       <div
         style={{
@@ -30,7 +31,9 @@ export const LayoutPlaceholder: React.FC<{ layoutNum: number } & LayoutProps> =
         >{`Description for Layout ${layoutNum} goes here...`}</p>
         <ItemTable
           items={order.items.slice(0, 2)}
-          formatItemTotal={(item) => formatCurrency(item.price * item.quantity)}
+          formatItemTotal={(item) =>
+            formatCurrency(item.price * item.quantity, currencyOpts)
+          }
           borderColor={borderColor}
         />
         {showTaxBreakdown && (
@@ -50,11 +53,11 @@ export const LayoutPlaceholder: React.FC<{ layoutNum: number } & LayoutProps> =
             >
               <span>Subtotal:</span>
               <span style={{ fontWeight: "bold" }}>
-                {formatCurrency(order.subtotal)}
+                {formatCurrency(order.subtotal, currencyOpts)}
               </span>
             </p>
           </footer>
         )}
       </div>
-    )
+    ),
   );
