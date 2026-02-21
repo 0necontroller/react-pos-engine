@@ -13,8 +13,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: "src/index.tsx",
-      name: "ReactPOSEngine",
-      fileName: (format) => `react-pos-engine.${format}.js`,
+      name: "ReactReceipts",
+      fileName: (format) => `react-receipts.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],

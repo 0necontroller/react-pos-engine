@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Order, PrintOptions } from "./types/type";
 import { PAPER_SIZES } from "./utils/size";
-import { useReceiptPrint } from "react-pos-engine";
+import { useReceiptPrint } from "react-receipts";
 
 // 🧮 --- Helper Functions ---
 const formatCurrency = (value: number) =>
@@ -23,11 +23,11 @@ const formatCurrency = (value: number) =>
   }).format(value);
 
 const calculateTotals = (
-  items: Order["items"]
+  items: Order["items"],
 ): { subtotal: number; tax: number; total: number } => {
   const subtotal = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
-    0
+    0,
   );
   const tax = Math.round(subtotal * 0.075); // 7.5% VAT for demo
   const total = subtotal + tax;
@@ -82,14 +82,14 @@ const App: React.FC = () => {
   const [showSignature, setShowSignature] = useState(false);
   const [showTaxBreakdown, setShowTaxBreakdown] = useState(true);
   const [customCss, setCustomCss] = useState(
-    "/* Add your custom print CSS here */"
+    "/* Add your custom print CSS here */",
   );
 
   // --- Derived Data ---
   const totals = useMemo(() => calculateTotals(order.items), [order.items]);
   const orderWithTotals = useMemo(
     () => ({ ...order, ...totals }),
-    [order, totals]
+    [order, totals],
   );
 
   const printOptions = useMemo<PrintOptions>(
@@ -128,13 +128,13 @@ const App: React.FC = () => {
       showSignature,
       showTaxBreakdown,
       customCss,
-    ]
+    ],
   );
 
   // --- Custom Hook ---
   const { printReceipt, ReceiptContent } = useReceiptPrint(
     orderWithTotals,
-    printOptions
+    printOptions,
   );
 
   // --- Handlers ---
@@ -142,7 +142,7 @@ const App: React.FC = () => {
 
   const updateItemName = (index: number, newName: string) => {
     const newItems = order.items.map((item, i) =>
-      i === index ? { ...item, name: newName } : item
+      i === index ? { ...item, name: newName } : item,
     );
     setOrder({ ...order, items: newItems });
   };
@@ -154,10 +154,10 @@ const App: React.FC = () => {
   const updateCustomField = (
     index: number,
     keyOrValue: "key" | "value",
-    newValue: string
+    newValue: string,
   ) => {
     const newFields = order.customFields.map((field, i) =>
-      i === index ? { ...field, [keyOrValue]: newValue } : field
+      i === index ? { ...field, [keyOrValue]: newValue } : field,
     );
     setOrder({ ...order, customFields: newFields });
   };

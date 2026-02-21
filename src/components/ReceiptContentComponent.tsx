@@ -49,7 +49,7 @@ export const ReceiptContentComponent: React.FC<ReceiptContentProps> = ({
   const paper = PAPER_SIZES["58mm"] || PAPER_SIZES["58mm"];
   const formatItemTotal = useCallback(
     (item: Item) => formatCurrency(item.price * item.quantity),
-    []
+    [],
   );
 
   const commonProps: LayoutProps = {

@@ -1,207 +1,189 @@
-import I, { memo as T, forwardRef as oe, createElement as Z, useCallback as de } from "react";
-var q = { exports: {} }, H = {};
-/**
- * @license React
- * react-jsx-runtime.production.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+import P, { memo as w, forwardRef as oe, createElement as Q, useCallback as de } from "react";
+var G = { exports: {} }, Y = {};
 var ne;
 function me() {
-  if (ne) return H;
+  if (ne) return Y;
   ne = 1;
-  var t = Symbol.for("react.transitional.element"), s = Symbol.for("react.fragment");
-  function l(r, n, i) {
+  var t = /* @__PURE__ */ Symbol.for("react.transitional.element"), s = /* @__PURE__ */ Symbol.for("react.fragment");
+  function l(r, a, i) {
     var d = null;
-    if (i !== void 0 && (d = "" + i), n.key !== void 0 && (d = "" + n.key), "key" in n) {
+    if (i !== void 0 && (d = "" + i), a.key !== void 0 && (d = "" + a.key), "key" in a) {
       i = {};
-      for (var x in n)
-        x !== "key" && (i[x] = n[x]);
-    } else i = n;
-    return n = i.ref, {
+      for (var x in a)
+        x !== "key" && (i[x] = a[x]);
+    } else i = a;
+    return a = i.ref, {
       $$typeof: t,
       type: r,
       key: d,
-      ref: n !== void 0 ? n : null,
+      ref: a !== void 0 ? a : null,
       props: i
     };
   }
-  return H.Fragment = s, H.jsx = l, H.jsxs = l, H;
+  return Y.Fragment = s, Y.jsx = l, Y.jsxs = l, Y;
 }
-var Y = {};
-/**
- * @license React
- * react-jsx-runtime.development.js
- *
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+var q = {};
 var le;
 function he() {
   return le || (le = 1, process.env.NODE_ENV !== "production" && (function() {
-    function t(a) {
-      if (a == null) return null;
-      if (typeof a == "function")
-        return a.$$typeof === M ? null : a.displayName || a.name || null;
-      if (typeof a == "string") return a;
-      switch (a) {
-        case k:
+    function t(n) {
+      if (n == null) return null;
+      if (typeof n == "function")
+        return n.$$typeof === H ? null : n.displayName || n.name || null;
+      if (typeof n == "string") return n;
+      switch (n) {
+        case S:
           return "Fragment";
-        case v:
+        case D:
           return "Profiler";
-        case L:
+        case z:
           return "StrictMode";
-        case R:
+        case A:
           return "Suspense";
-        case P:
+        case M:
           return "SuspenseList";
-        case B:
+        case F:
           return "Activity";
       }
-      if (typeof a == "object")
-        switch (typeof a.tag == "number" && console.error(
+      if (typeof n == "object")
+        switch (typeof n.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
-        ), a.$$typeof) {
-          case _:
+        ), n.$$typeof) {
+          case R:
             return "Portal";
           case p:
-            return a.displayName || "Context";
+            return n.displayName || "Context";
           case m:
-            return (a._context.displayName || "Context") + ".Consumer";
-          case C:
-            var c = a.render;
-            return a = a.displayName, a || (a = c.displayName || c.name || "", a = a !== "" ? "ForwardRef(" + a + ")" : "ForwardRef"), a;
-          case F:
-            return c = a.displayName || null, c !== null ? c : t(a.type) || "Memo";
-          case z:
-            c = a._payload, a = a._init;
+            return (n._context.displayName || "Context") + ".Consumer";
+          case T:
+            var c = n.render;
+            return n = n.displayName, n || (n = c.displayName || c.name || "", n = n !== "" ? "ForwardRef(" + n + ")" : "ForwardRef"), n;
+          case W:
+            return c = n.displayName || null, c !== null ? c : t(n.type) || "Memo";
+          case I:
+            c = n._payload, n = n._init;
             try {
-              return t(a(c));
+              return t(n(c));
             } catch {
             }
         }
       return null;
     }
-    function s(a) {
-      return "" + a;
+    function s(n) {
+      return "" + n;
     }
-    function l(a) {
+    function l(n) {
       try {
-        s(a);
+        s(n);
         var c = !1;
       } catch {
         c = !0;
       }
       if (c) {
         c = console;
-        var f = c.error, g = typeof Symbol == "function" && Symbol.toStringTag && a[Symbol.toStringTag] || a.constructor.name || "Object";
+        var f = c.error, g = typeof Symbol == "function" && Symbol.toStringTag && n[Symbol.toStringTag] || n.constructor.name || "Object";
         return f.call(
           c,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
           g
-        ), s(a);
+        ), s(n);
       }
     }
-    function r(a) {
-      if (a === k) return "<>";
-      if (typeof a == "object" && a !== null && a.$$typeof === z)
+    function r(n) {
+      if (n === S) return "<>";
+      if (typeof n == "object" && n !== null && n.$$typeof === I)
         return "<...>";
       try {
-        var c = t(a);
+        var c = t(n);
         return c ? "<" + c + ">" : "<...>";
       } catch {
         return "<...>";
       }
     }
-    function n() {
-      var a = j.A;
-      return a === null ? null : a.getOwner();
+    function a() {
+      var n = j.A;
+      return n === null ? null : n.getOwner();
     }
     function i() {
       return Error("react-stack-top-frame");
     }
-    function d(a) {
-      if ($.call(a, "key")) {
-        var c = Object.getOwnPropertyDescriptor(a, "key").get;
+    function d(n) {
+      if (k.call(n, "key")) {
+        var c = Object.getOwnPropertyDescriptor(n, "key").get;
         if (c && c.isReactWarning) return !1;
       }
-      return a.key !== void 0;
+      return n.key !== void 0;
     }
-    function x(a, c) {
+    function x(n, c) {
       function f() {
-        Q || (Q = !0, console.error(
+        O || (O = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
           c
         ));
       }
-      f.isReactWarning = !0, Object.defineProperty(a, "key", {
+      f.isReactWarning = !0, Object.defineProperty(n, "key", {
         get: f,
         configurable: !0
       });
     }
-    function w() {
-      var a = t(this.type);
-      return ee[a] || (ee[a] = !0, console.error(
+    function N() {
+      var n = t(this.type);
+      return ee[n] || (ee[n] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
-      )), a = this.props.ref, a !== void 0 ? a : null;
+      )), n = this.props.ref, n !== void 0 ? n : null;
     }
-    function E(a, c, f, g, U, K) {
+    function E(n, c, f, g, V, X) {
       var u = f.ref;
-      return a = {
+      return n = {
         $$typeof: b,
-        type: a,
+        type: n,
         key: c,
         props: f,
         _owner: g
-      }, (u !== void 0 ? u : null) !== null ? Object.defineProperty(a, "ref", {
+      }, (u !== void 0 ? u : null) !== null ? Object.defineProperty(n, "ref", {
         enumerable: !1,
-        get: w
-      }) : Object.defineProperty(a, "ref", { enumerable: !1, value: null }), a._store = {}, Object.defineProperty(a._store, "validated", {
+        get: N
+      }) : Object.defineProperty(n, "ref", { enumerable: !1, value: null }), n._store = {}, Object.defineProperty(n._store, "validated", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
         value: 0
-      }), Object.defineProperty(a, "_debugInfo", {
+      }), Object.defineProperty(n, "_debugInfo", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
         value: null
-      }), Object.defineProperty(a, "_debugStack", {
+      }), Object.defineProperty(n, "_debugStack", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: U
-      }), Object.defineProperty(a, "_debugTask", {
+        value: V
+      }), Object.defineProperty(n, "_debugTask", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: K
-      }), Object.freeze && (Object.freeze(a.props), Object.freeze(a)), a;
+        value: X
+      }), Object.freeze && (Object.freeze(n.props), Object.freeze(n)), n;
     }
-    function S(a, c, f, g, U, K) {
+    function v(n, c, f, g, V, X) {
       var u = c.children;
       if (u !== void 0)
         if (g)
-          if (W(u)) {
+          if (C(u)) {
             for (g = 0; g < u.length; g++)
-              O(u[g]);
+              L(u[g]);
             Object.freeze && Object.freeze(u);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
-        else O(u);
-      if ($.call(c, "key")) {
-        u = t(a);
-        var D = Object.keys(c).filter(function(pe) {
+        else L(u);
+      if (k.call(c, "key")) {
+        u = t(n);
+        var B = Object.keys(c).filter(function(pe) {
           return pe !== "key";
         });
-        g = 0 < D.length ? "{key: someKey, " + D.join(": ..., ") + ": ...}" : "{key: someKey}", ae[u + g] || (D = 0 < D.length ? "{" + D.join(": ..., ") + ": ...}" : "{}", console.error(
+        g = 0 < B.length ? "{key: someKey, " + B.join(": ..., ") + ": ...}" : "{key: someKey}", ae[u + g] || (B = 0 < B.length ? "{" + B.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
@@ -210,76 +192,76 @@ React keys must be passed directly to JSX without using spread:
   <%s key={someKey} {...props} />`,
           g,
           u,
-          D,
+          B,
           u
         ), ae[u + g] = !0);
       }
       if (u = null, f !== void 0 && (l(f), u = "" + f), d(c) && (l(c.key), u = "" + c.key), "key" in c) {
         f = {};
-        for (var X in c)
-          X !== "key" && (f[X] = c[X]);
+        for (var Z in c)
+          Z !== "key" && (f[Z] = c[Z]);
       } else f = c;
       return u && x(
         f,
-        typeof a == "function" ? a.displayName || a.name || "Unknown" : a
+        typeof n == "function" ? n.displayName || n.name || "Unknown" : n
       ), E(
-        a,
+        n,
         u,
         f,
-        n(),
-        U,
-        K
+        a(),
+        V,
+        X
       );
     }
-    function O(a) {
-      h(a) ? a._store && (a._store.validated = 1) : typeof a == "object" && a !== null && a.$$typeof === z && (a._payload.status === "fulfilled" ? h(a._payload.value) && a._payload.value._store && (a._payload.value._store.validated = 1) : a._store && (a._store.validated = 1));
+    function L(n) {
+      h(n) ? n._store && (n._store.validated = 1) : typeof n == "object" && n !== null && n.$$typeof === I && (n._payload.status === "fulfilled" ? h(n._payload.value) && n._payload.value._store && (n._payload.value._store.validated = 1) : n._store && (n._store.validated = 1));
     }
-    function h(a) {
-      return typeof a == "object" && a !== null && a.$$typeof === b;
+    function h(n) {
+      return typeof n == "object" && n !== null && n.$$typeof === b;
     }
-    var y = I, b = Symbol.for("react.transitional.element"), _ = Symbol.for("react.portal"), k = Symbol.for("react.fragment"), L = Symbol.for("react.strict_mode"), v = Symbol.for("react.profiler"), m = Symbol.for("react.consumer"), p = Symbol.for("react.context"), C = Symbol.for("react.forward_ref"), R = Symbol.for("react.suspense"), P = Symbol.for("react.suspense_list"), F = Symbol.for("react.memo"), z = Symbol.for("react.lazy"), B = Symbol.for("react.activity"), M = Symbol.for("react.client.reference"), j = y.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, $ = Object.prototype.hasOwnProperty, W = Array.isArray, J = console.createTask ? console.createTask : function() {
+    var y = P, b = /* @__PURE__ */ Symbol.for("react.transitional.element"), R = /* @__PURE__ */ Symbol.for("react.portal"), S = /* @__PURE__ */ Symbol.for("react.fragment"), z = /* @__PURE__ */ Symbol.for("react.strict_mode"), D = /* @__PURE__ */ Symbol.for("react.profiler"), m = /* @__PURE__ */ Symbol.for("react.consumer"), p = /* @__PURE__ */ Symbol.for("react.context"), T = /* @__PURE__ */ Symbol.for("react.forward_ref"), A = /* @__PURE__ */ Symbol.for("react.suspense"), M = /* @__PURE__ */ Symbol.for("react.suspense_list"), W = /* @__PURE__ */ Symbol.for("react.memo"), I = /* @__PURE__ */ Symbol.for("react.lazy"), F = /* @__PURE__ */ Symbol.for("react.activity"), H = /* @__PURE__ */ Symbol.for("react.client.reference"), j = y.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, k = Object.prototype.hasOwnProperty, C = Array.isArray, U = console.createTask ? console.createTask : function() {
       return null;
     };
     y = {
-      react_stack_bottom_frame: function(a) {
-        return a();
+      react_stack_bottom_frame: function(n) {
+        return n();
       }
     };
-    var Q, ee = {}, te = y.react_stack_bottom_frame.bind(
+    var O, ee = {}, te = y.react_stack_bottom_frame.bind(
       y,
       i
-    )(), se = J(r(i)), ae = {};
-    Y.Fragment = k, Y.jsx = function(a, c, f) {
+    )(), se = U(r(i)), ae = {};
+    q.Fragment = S, q.jsx = function(n, c, f) {
       var g = 1e4 > j.recentlyCreatedOwnerStacks++;
-      return S(
-        a,
+      return v(
+        n,
         c,
         f,
         !1,
         g ? Error("react-stack-top-frame") : te,
-        g ? J(r(a)) : se
+        g ? U(r(n)) : se
       );
-    }, Y.jsxs = function(a, c, f) {
+    }, q.jsxs = function(n, c, f) {
       var g = 1e4 > j.recentlyCreatedOwnerStacks++;
-      return S(
-        a,
+      return v(
+        n,
         c,
         f,
         !0,
         g ? Error("react-stack-top-frame") : te,
-        g ? J(r(a)) : se
+        g ? U(r(n)) : se
       );
     };
-  })()), Y;
+  })()), q;
 }
 var ie;
 function fe() {
-  return ie || (ie = 1, process.env.NODE_ENV === "production" ? q.exports = me() : q.exports = he()), q.exports;
+  return ie || (ie = 1, process.env.NODE_ENV === "production" ? G.exports = me() : G.exports = he()), G.exports;
 }
 var e = fe();
-const V = {
+const J = {
   "58mm": { width: "58mm", name: "POS (58mm)" }
-}, N = I.memo(
+}, $ = P.memo(
   ({ items: t, formatItemTotal: s, borderColor: l, hidePrice: r = !1 }) => /* @__PURE__ */ e.jsxs(
     "table",
     {
@@ -315,21 +297,21 @@ const V = {
             ]
           }
         ) }),
-        /* @__PURE__ */ e.jsx("tbody", { children: t.map((n, i) => /* @__PURE__ */ e.jsxs("tr", { children: [
-          /* @__PURE__ */ e.jsx("td", { style: { textAlign: "left", padding: "2px 0" }, children: n.quantity }),
-          /* @__PURE__ */ e.jsx("td", { style: { textAlign: "left", padding: "2px 0" }, children: n.name }),
-          !r && /* @__PURE__ */ e.jsx("td", { style: { textAlign: "right", padding: "2px 0" }, children: s(n) })
+        /* @__PURE__ */ e.jsx("tbody", { children: t.map((a, i) => /* @__PURE__ */ e.jsxs("tr", { children: [
+          /* @__PURE__ */ e.jsx("td", { style: { textAlign: "left", padding: "2px 0" }, children: a.quantity }),
+          /* @__PURE__ */ e.jsx("td", { style: { textAlign: "left", padding: "2px 0" }, children: a.name }),
+          !r && /* @__PURE__ */ e.jsx("td", { style: { textAlign: "right", padding: "2px 0" }, children: s(a) })
         ] }, i)) })
       ]
     }
   )
-), be = I.memo(
+), be = P.memo(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
@@ -366,10 +348,10 @@ const V = {
       )
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -414,17 +396,17 @@ const V = {
       }
     )
   ] })
-), ge = I.memo(
+), ge = P.memo(
   ({
     order: t,
     primaryColor: s,
     headerText: l,
     borderColor: r,
-    headerBgColor: n,
+    headerBgColor: a,
     formatItemTotal: i,
     sellerName: d,
     showSignature: x,
-    textColor: w
+    textColor: N
   }) => /* @__PURE__ */ e.jsxs(
     "div",
     {
@@ -434,7 +416,7 @@ const V = {
         minHeight: "270mm",
         border: `1px solid ${r}`,
         boxSizing: "border-box",
-        color: w
+        color: N
       },
       children: [
         /* @__PURE__ */ e.jsxs(
@@ -446,7 +428,7 @@ const V = {
               marginBottom: "20px",
               display: "flex",
               justifyContent: "space-between",
-              backgroundColor: n
+              backgroundColor: a
             },
             children: [
               /* @__PURE__ */ e.jsx("h1", { style: { fontSize: "24px", margin: 0, color: s }, children: "INVOICE" }),
@@ -480,7 +462,7 @@ const V = {
           /* @__PURE__ */ e.jsx("p", { style: { margin: "2px 0" }, children: t.customer.phone })
         ] }),
         /* @__PURE__ */ e.jsx(
-          N,
+          $,
           {
             items: t.items,
             formatItemTotal: i,
@@ -536,7 +518,7 @@ const V = {
       ]
     }
   )
-), ue = I.memo(
+), ue = P.memo(
   ({ order: t, primaryColor: s, borderColor: l }) => /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
     /* @__PURE__ */ e.jsxs(
       "header",
@@ -561,7 +543,7 @@ const V = {
       }
     ),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
         formatItemTotal: () => "",
@@ -585,13 +567,13 @@ const V = {
       }
     )
   ] })
-), je = I.memo(
+), je = P.memo(
   ({
     layoutNum: t,
     order: s,
     primaryColor: l,
     borderColor: r,
-    headerBgColor: n,
+    headerBgColor: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs(
@@ -602,7 +584,7 @@ const V = {
         border: `1px dashed ${r}`,
         textAlign: "center",
         margin: "10px 0",
-        backgroundColor: n
+        backgroundColor: a
       },
       children: [
         /* @__PURE__ */ e.jsx(
@@ -620,7 +602,7 @@ const V = {
           }
         ),
         /* @__PURE__ */ e.jsx(
-          N,
+          $,
           {
             items: s.items.slice(0, 2),
             formatItemTotal: (x) => o(x.price * x.quantity),
@@ -654,13 +636,13 @@ const V = {
       ]
     }
   )
-), ye = T(
+), ye = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-6 space-y-4 font-sans text-gray-800 text-left", children: [
     /* @__PURE__ */ e.jsxs(
@@ -686,10 +668,10 @@ const V = {
       }
     ),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -721,12 +703,6 @@ const V = {
     /* @__PURE__ */ e.jsx("div", { className: "text-xs pt-4 text-center text-gray-500", children: "Thank you for choosing us! Visit us at example.com" })
   ] })
 );
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 const $e = (t) => t.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), Ne = (t) => t.replace(
   /^([A-Z])|[\s-_]+(\w)/g,
   (s, l, r) => r ? r.toUpperCase() : l.toLowerCase()
@@ -738,12 +714,6 @@ const $e = (t) => t.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), Ne = (
     if (s.startsWith("aria-") || s === "role" || s === "title")
       return !0;
 };
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 var ve = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -755,50 +725,38 @@ var ve = {
   strokeLinecap: "round",
   strokeLinejoin: "round"
 };
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 const Te = oe(
   ({
     color: t = "currentColor",
     size: s = 24,
     strokeWidth: l = 2,
     absoluteStrokeWidth: r,
-    className: n = "",
+    className: a = "",
     children: i,
     iconNode: d,
     ...x
-  }, w) => Z(
+  }, N) => Q(
     "svg",
     {
-      ref: w,
+      ref: N,
       ...ve,
       width: s,
       height: s,
       stroke: t,
       strokeWidth: r ? Number(l) * 24 / Number(s) : l,
-      className: ce("lucide", n),
+      className: ce("lucide", a),
       ...!i && !we(x) && { "aria-hidden": "true" },
       ...x
     },
     [
-      ...d.map(([E, S]) => Z(E, S)),
+      ...d.map(([E, v]) => Q(E, v)),
       ...Array.isArray(i) ? i : [i]
     ]
   )
 );
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 const xe = (t, s) => {
   const l = oe(
-    ({ className: r, ...n }, i) => Z(Te, {
+    ({ className: r, ...a }, i) => Q(Te, {
       ref: i,
       iconNode: s,
       className: ce(
@@ -806,29 +764,17 @@ const xe = (t, s) => {
         `lucide-${t}`,
         r
       ),
-      ...n
+      ...a
     })
   );
   return l.displayName = re(t), l;
 };
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 const Se = [
   ["path", { d: "M8 2v4", key: "1cmpym" }],
   ["path", { d: "M16 2v4", key: "4m81vk" }],
   ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
   ["path", { d: "M3 10h18", key: "8toen8" }]
 ], ke = xe("calendar", Se);
-/**
- * @license lucide-react v0.552.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
 const Ee = [
   ["circle", { cx: "8", cy: "21", r: "1", key: "jimo8o" }],
   ["circle", { cx: "19", cy: "21", r: "1", key: "13723u" }],
@@ -839,13 +785,13 @@ const Ee = [
       key: "9zh506"
     }
   ]
-], Re = xe("shopping-cart", Ee), Ae = T(
+], Re = xe("shopping-cart", Ee), Ae = w(
   ({
     order: t,
     primaryColor: s,
     headerText: l,
     formatItemTotal: r,
-    showTaxBreakdown: n,
+    showTaxBreakdown: a,
     borderColor: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs("div", { className: "max-w-md w-full mx-auto p-6 space-y-5 font-mono text-gray-100 bg-gray-900/90 border border-gray-700/50 rounded-xl shadow-2xl shadow-black/50 backdrop-blur-sm transition duration-300 hover:shadow-emerald-900/50", children: [
@@ -875,14 +821,14 @@ const Ee = [
       ] })
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
         formatItemTotal: r,
         borderColor: "border-gray-700"
       }
     ),
-    n && /* @__PURE__ */ e.jsxs("footer", { className: "pt-4 border-t-2 border-gray-700", children: [
+    a && /* @__PURE__ */ e.jsxs("footer", { className: "pt-4 border-t-2 border-gray-700", children: [
       /* @__PURE__ */ e.jsxs("div", { className: "space-y-1 text-sm text-gray-300", children: [
         /* @__PURE__ */ e.jsxs("div", { className: "flex justify-between", children: [
           /* @__PURE__ */ e.jsx("span", { children: "Subtotal:" }),
@@ -912,13 +858,13 @@ const Ee = [
       }
     )
   ] })
-), Oe = T(
+), Oe = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-6 space-y-4 font-serif text-gray-700 text-left border-2 border-gray-100", children: [
@@ -968,10 +914,10 @@ const Ee = [
       " items)"
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -980,13 +926,13 @@ const Ee = [
       new Date(t.date).toLocaleString()
     ] })
   ] })
-), _e = T(
+), _e = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-6 space-y-3 font-sans text-gray-800 text-left", children: [
@@ -1009,10 +955,10 @@ const Ee = [
       }
     ),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -1050,13 +996,13 @@ const Ee = [
       }
     )
   ] })
-), Le = T(
+), Le = w(
   ({
     order: t,
     primaryColor: s,
     headerText: l,
     formatItemTotal: r,
-    showTaxBreakdown: n,
+    showTaxBreakdown: a,
     borderColor: i,
     alignStyle: d
   }) => {
@@ -1076,14 +1022,14 @@ const Ee = [
         ] })
       ] }),
       /* @__PURE__ */ e.jsx(
-        N,
+        $,
         {
           items: t.items,
           formatItemTotal: r,
           borderColor: "border-gray-300"
         }
       ),
-      n && /* @__PURE__ */ e.jsxs("footer", { className: "pt-4 text-base", children: [
+      a && /* @__PURE__ */ e.jsxs("footer", { className: "pt-4 text-base", children: [
         /* @__PURE__ */ e.jsxs("div", { className: "flex justify-end mt-1 space-x-12", children: [
           /* @__PURE__ */ e.jsx("span", { className: "font-normal w-1/4 text-left", children: "Subtotal:" }),
           /* @__PURE__ */ e.jsx("span", { className: "font-medium w-1/4", children: o(t.subtotal) })
@@ -1109,13 +1055,13 @@ const Ee = [
       ] })
     ] });
   }
-), A = (t, s = "border") => t.replace("text-", `${s}-`), G = (t) => t.replace("text-", "bg-"), ze = T(
+), _ = (t, s = "border") => t.replace("text-", `${s}-`), K = (t) => t.replace("text-", "bg-"), ze = w(
   ({
     order: t,
     primaryColor: s,
     headerText: l,
     formatItemTotal: r,
-    showTaxBreakdown: n,
+    showTaxBreakdown: a,
     alignStyle: i
   }) => {
     const d = i === "left" ? "text-left" : i === "right" ? "text-right" : "text-center";
@@ -1127,7 +1073,7 @@ const Ee = [
           /* @__PURE__ */ e.jsxs(
             "header",
             {
-              className: `pb-3 ${A(
+              className: `pb-3 ${_(
                 s,
                 "border-b-4"
               )} border-solid`,
@@ -1150,7 +1096,7 @@ const Ee = [
             }
           ),
           /* @__PURE__ */ e.jsx(
-            N,
+            $,
             {
               items: t.items,
               formatItemTotal: r,
@@ -1162,7 +1108,7 @@ const Ee = [
             {
               className: `pt-4 border-t border-dashed border-gray-300 text-base flex flex-col items-${i}`,
               children: [
-                n && /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
+                a && /* @__PURE__ */ e.jsxs(e.Fragment, { children: [
                   /* @__PURE__ */ e.jsxs("div", { className: "flex justify-between w-full max-w-xs space-x-4", children: [
                     /* @__PURE__ */ e.jsx("span", { className: "text-left", children: "Subtotal:" }),
                     /* @__PURE__ */ e.jsx("span", { className: "font-medium text-right", children: o(t.subtotal) })
@@ -1175,7 +1121,7 @@ const Ee = [
                 /* @__PURE__ */ e.jsxs(
                   "div",
                   {
-                    className: `flex justify-between w-full max-w-xs mt-3 text-2xl font-bold pt-3 ${A(
+                    className: `flex justify-between w-full max-w-xs mt-3 text-2xl font-bold pt-3 ${_(
                       s,
                       "border-t-2"
                     )}`,
@@ -1192,13 +1138,13 @@ const Ee = [
       }
     );
   }
-), Ie = T(
+), Ie = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => {
@@ -1211,7 +1157,7 @@ const Ee = [
           /* @__PURE__ */ e.jsx(
             "div",
             {
-              className: `inline-block px-6 py-2 text-xl font-bold uppercase rounded-full ${G(
+              className: `inline-block px-6 py-2 text-xl font-bold uppercase rounded-full ${K(
                 s
               )} text-white shadow-md mb-4`,
               children: r || "Checkout Receipt"
@@ -1231,10 +1177,10 @@ const Ee = [
             ] })
           ] }),
           /* @__PURE__ */ e.jsx(
-            N,
+            $,
             {
               items: t.items,
-              formatItemTotal: n,
+              formatItemTotal: a,
               borderColor: l
             }
           ),
@@ -1257,7 +1203,7 @@ const Ee = [
           /* @__PURE__ */ e.jsxs(
             "div",
             {
-              className: `pt-3 mt-3 text-2xl font-extrabold ${A(
+              className: `pt-3 mt-3 text-2xl font-extrabold ${_(
                 s,
                 "border-t-4"
               )} border-double flex justify-between w-full max-w-xs mx-auto`,
@@ -1271,13 +1217,13 @@ const Ee = [
       }
     );
   }
-), Ce = T(
+), Ce = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-4 space-y-4 font-sans text-gray-800 text-left", children: [
     /* @__PURE__ */ e.jsxs("header", { className: "pb-4 border-b border-gray-300", children: [
@@ -1291,7 +1237,7 @@ const Ee = [
       /* @__PURE__ */ e.jsxs(
         "div",
         {
-          className: `grid grid-cols-2 gap-4 text-sm font-medium border-t-2 border-b-2 ${A(
+          className: `grid grid-cols-2 gap-4 text-sm font-medium border-t-2 border-b-2 ${_(
             s
           )} py-2`,
           children: [
@@ -1310,10 +1256,10 @@ const Ee = [
       )
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -1335,7 +1281,7 @@ const Ee = [
           /* @__PURE__ */ e.jsxs(
             "div",
             {
-              className: `flex justify-between pt-2 mt-2 text-2xl font-bold border-t ${A(
+              className: `flex justify-between pt-2 mt-2 text-2xl font-bold border-t ${_(
                 s
               )}`,
               children: [
@@ -1348,13 +1294,13 @@ const Ee = [
       }
     )
   ] })
-), Pe = T(
+), Pe = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i,
     alignStyle: d
   }) => /* @__PURE__ */ e.jsxs("div", { className: `p-4 space-y-4 font-sans text-gray-800 text-${d}`, children: [
@@ -1366,19 +1312,19 @@ const Ee = [
       ] })
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
     /* @__PURE__ */ e.jsxs(
       "div",
       {
-        className: `mt-6 p-4 rounded-lg shadow-inner ${G(
+        className: `mt-6 p-4 rounded-lg shadow-inner ${K(
           s
-        ).replace("text-", "bg-")} bg-opacity-10 border ${A(
+        ).replace("text-", "bg-")} bg-opacity-10 border ${_(
           s
         )}`,
         children: [
@@ -1401,13 +1347,13 @@ const Ee = [
       }
     )
   ] })
-), De = T(
+), De = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-4 space-y-5 font-sans text-gray-800 text-left", children: [
     /* @__PURE__ */ e.jsxs("header", { className: "pb-2 border-b-2 border-dashed border-gray-400", children: [
@@ -1435,7 +1381,7 @@ const Ee = [
               d.quantity,
               "x"
             ] }),
-            /* @__PURE__ */ e.jsx("span", { className: "text-base font-bold w-1/4 text-right", children: n(d) })
+            /* @__PURE__ */ e.jsx("span", { className: "text-base font-bold w-1/4 text-right", children: a(d) })
           ] }),
           /* @__PURE__ */ e.jsxs("p", { className: "text-xs text-gray-500 italic", children: [
             "@ ",
@@ -1460,7 +1406,7 @@ const Ee = [
       /* @__PURE__ */ e.jsxs(
         "div",
         {
-          className: `mt-3 pt-3 flex justify-between text-3xl font-extrabold ${A(
+          className: `mt-3 pt-3 flex justify-between text-3xl font-extrabold ${_(
             s,
             "border-t-4"
           )}`,
@@ -1472,19 +1418,19 @@ const Ee = [
       )
     ] })
   ] })
-), Fe = T(
+), Fe = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-4 space-y-5 font-sans text-gray-800 text-left", children: [
     /* @__PURE__ */ e.jsxs(
       "header",
       {
-        className: `py-3 px-4 ${G(
+        className: `py-3 px-4 ${K(
           s
         )} text-white rounded-t-lg`,
         children: [
@@ -1513,10 +1459,10 @@ const Ee = [
       ] })
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -1543,13 +1489,13 @@ const Ee = [
       )
     ] })
   ] })
-), Be = T(
+), Be = w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-4 space-y-5 font-sans text-gray-800 text-left", children: [
     /* @__PURE__ */ e.jsxs("header", { className: "pb-4 border-b border-gray-300", children: [
@@ -1562,10 +1508,10 @@ const Ee = [
       ] })
     ] }),
     /* @__PURE__ */ e.jsx(
-      N,
+      $,
       {
         items: t.items,
-        formatItemTotal: n,
+        formatItemTotal: a,
         borderColor: l
       }
     ),
@@ -1592,14 +1538,14 @@ const Ee = [
       )
     ] })
   ] })
-), Me = T(
-  ({ order: t, primaryColor: s, headerText: l, formatItemTotal: r, showTaxBreakdown: n }) => {
+), Me = w(
+  ({ order: t, primaryColor: s, headerText: l, formatItemTotal: r, showTaxBreakdown: a }) => {
     const i = "text-amber-500";
     return /* @__PURE__ */ e.jsxs("div", { className: "p-4 space-y-5 font-sans text-gray-900 text-center", children: [
       /* @__PURE__ */ e.jsxs(
         "header",
         {
-          className: `py-4 px-4 ${G(
+          className: `py-4 px-4 ${K(
             s
           )} text-white shadow-lg rounded-b-xl`,
           children: [
@@ -1642,7 +1588,7 @@ const Ee = [
         x
       )) }),
       /* @__PURE__ */ e.jsxs("div", { className: "pt-2", children: [
-        n && /* @__PURE__ */ e.jsxs(
+        a && /* @__PURE__ */ e.jsxs(
           "div",
           {
             className: `text-base space-y-1 border-t pt-2 border-dashed ${i.replace(
@@ -1664,7 +1610,7 @@ const Ee = [
         /* @__PURE__ */ e.jsxs(
           "div",
           {
-            className: `mt-3 pt-3 flex justify-between text-3xl font-black ${A(
+            className: `mt-3 pt-3 flex justify-between text-3xl font-black ${_(
               s,
               "border-t-8"
             )} border-double`,
@@ -1678,13 +1624,13 @@ const Ee = [
     ] });
   }
 );
-T(
+w(
   ({
     order: t,
     primaryColor: s,
     borderColor: l,
     headerText: r,
-    formatItemTotal: n,
+    formatItemTotal: a,
     showTaxBreakdown: i
   }) => /* @__PURE__ */ e.jsxs("div", { className: "p-2 space-y-2 font-mono text-gray-900 text-center text-sm", children: [
     /* @__PURE__ */ e.jsxs("header", { className: "pb-2 border-b-2 border-dashed border-gray-400", children: [
@@ -1706,7 +1652,7 @@ T(
             "x ",
             d.name
           ] }),
-          /* @__PURE__ */ e.jsx("span", { className: "w-1/2 text-right font-medium", children: n(d) })
+          /* @__PURE__ */ e.jsx("span", { className: "w-1/2 text-right font-medium", children: a(d) })
         ]
       },
       x
@@ -1725,7 +1671,7 @@ T(
       /* @__PURE__ */ e.jsxs(
         "div",
         {
-          className: `mt-2 pt-2 flex justify-between text-base font-bold border-t border-solid ${A(
+          className: `mt-2 pt-2 flex justify-between text-base font-bold border-t border-solid ${_(
             s
           )}`,
           children: [
@@ -1742,41 +1688,41 @@ const We = ({
   layout: s = 1,
   alignment: l = "center",
   primaryColor: r = "#007BFF",
-  textColor: n = "#000000",
+  textColor: a = "#000000",
   borderColor: i = "#CCCCCC",
   headerBgColor: d = "transparent",
   baseFontSize: x = 9,
-  paperSize: w = "58mm",
+  paperSize: N = "58mm",
   fontFamily: E = "Consolas, monospace",
-  logoUrl: S = "",
-  headerText: O = "",
+  logoUrl: v = "",
+  headerText: L = "",
   footerText: h = "",
   sellerName: y = "",
   showSignature: b = !1,
-  showTaxBreakdown: _ = !1
+  showTaxBreakdown: R = !1
 }) => {
-  const k = l === "start" ? "left" : l === "end" ? "right" : "center", L = V["58mm"] || V["58mm"], v = de(
-    (R) => o(R.price * R.quantity),
+  const S = l === "start" ? "left" : l === "end" ? "right" : "center", z = J["58mm"] || J["58mm"], D = de(
+    (A) => o(A.price * A.quantity),
     []
   ), m = {
     order: t,
-    alignStyle: k,
+    alignStyle: S,
     primaryColor: r,
     borderColor: i,
     headerBgColor: d,
-    formatItemTotal: v,
-    headerText: O,
+    formatItemTotal: D,
+    headerText: L,
     footerText: h,
     sellerName: y,
     showSignature: b,
-    textColor: n,
+    textColor: a,
     layout: s,
     alignment: l,
     baseFontSize: x,
-    paperSize: w,
+    paperSize: N,
     fontFamily: E,
-    logoUrl: S,
-    showTaxBreakdown: _,
+    logoUrl: v,
+    showTaxBreakdown: R,
     customCss: ""
   };
   let p;
@@ -1833,26 +1779,26 @@ const We = ({
       p = /* @__PURE__ */ e.jsx(je, { layoutNum: s, ...m });
       break;
   }
-  const C = s === 4 ? p : /* @__PURE__ */ e.jsxs(
+  const T = s === 4 ? p : /* @__PURE__ */ e.jsxs(
     "div",
     {
       style: {
-        ...L,
+        ...z,
         // { width: '58mm' }
         fontFamily: E,
         fontSize: `${x}px`,
-        color: n,
+        color: a,
         lineHeight: "1.2",
         padding: "5px",
         margin: "0 auto",
-        textAlign: k,
+        textAlign: S,
         boxSizing: "content-box"
       },
       children: [
-        S && /* @__PURE__ */ e.jsx(
+        v && /* @__PURE__ */ e.jsx(
           "img",
           {
-            src: S,
+            src: v,
             alt: "Logo",
             style: {
               maxWidth: "100%",
@@ -1860,7 +1806,7 @@ const We = ({
               margin: "5px auto",
               display: "block"
             },
-            onError: (R) => R.currentTarget.style.display = "none"
+            onError: (A) => A.currentTarget.style.display = "none"
           }
         ),
         p,
@@ -1925,11 +1871,24 @@ const We = ({
     {
       id: "receipt-content-target-wrapper",
       style: { minWidth: "58mm", margin: "0 auto" },
-      children: C
+      children: T
     }
   );
-}, o = (t) => `$${(t / 100).toFixed(2)}`, He = I.memo(We), Ye = (t, s, l) => {
-  const r = l ? "" : '<th style="text-align: right; padding: 3px 0; width: 25%;">TOTAL</th>', n = t.map(
+}, o = (t, s) => {
+  const l = t / 100, r = s?.currency ?? "USD", a = s?.locale ?? "en-US", i = s?.currencyDisplay ?? "symbol";
+  try {
+    return new Intl.NumberFormat(a, {
+      style: "currency",
+      currency: r,
+      currencyDisplay: i,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(l);
+  } catch {
+    return `${r} ${l.toFixed(2)}`;
+  }
+}, He = P.memo(We), Ue = (t, s, l) => {
+  const r = l ? "" : '<th style="text-align: right; padding: 3px 0; width: 25%;">TOTAL</th>', a = t.map(
     (i) => `
     <tr>
         <td style="text-align: left; padding: 2px 0;">${i.quantity}</td>
@@ -1949,26 +1908,26 @@ const We = ({
                 ${r}
             </tr>
         </thead>
-        <tbody>${n}</tbody>
+        <tbody>${a}</tbody>
     </table>
   `;
-}, Ue = (t, s, l) => {
+}, Ye = (t, s, l) => {
   const {
     layout: r,
-    primaryColor: n,
+    primaryColor: a,
     borderColor: i,
     headerText: d,
     headerBgColor: x,
-    sellerName: w,
+    sellerName: N,
     showSignature: E,
-    showTaxBreakdown: S
-  } = s, O = r === 6, h = Ye(
+    showTaxBreakdown: v
+  } = s, L = r === 6, h = Ue(
     t.items,
     i,
-    O
-  ), y = (_, k) => `
-    <h1 style="font-size: 1.4em; margin: 5px 0; color: ${k}; text-transform: uppercase;">${_ || "The Store Name"}</h1>
-  `, b = S ? `
+    L
+  ), y = (R, S) => `
+    <h1 style="font-size: 1.4em; margin: 5px 0; color: ${S}; text-transform: uppercase;">${R || "The Store Name"}</h1>
+  `, b = v ? `
     <footer style="border-top: 1px dashed ${i}; padding-top: 5px; text-align: ${l};">
       <p style="margin: 2px 0; display: flex; justify-content: space-between;"><span>Subtotal:</span><span style="font-weight: bold;">${o(
     t.subtotal
@@ -1984,17 +1943,17 @@ const We = ({
     case 2:
     // Detailed POS
     case 3:
-      const _ = r === 2 ? t.customFields.map(
+      const R = r === 2 ? t.customFields.map(
         (j) => `<p style="font-size: 0.9em;">${j.key}: ${j.value}</p>`
       ).join("") : "";
       return `
         <header style="background-color: ${x}; padding: 5px 0;">
-          ${y(d, n)}
+          ${y(d, a)}
           <p style="margin: 2px 0;">Order #: ${t.id}</p>
           <p style="margin: 5px 0 10px 0; border-bottom: 1px dashed ${i}; padding-bottom: 5px;">Date: ${new Date(
         t.date
       ).toLocaleDateString()}</p>
-          ${_}
+          ${R}
         </header>
         ${h}
         ${b}
@@ -2002,21 +1961,21 @@ const We = ({
     case 4: {
       const j = `
         <section style="margin-bottom: 20px;">
-          <h2 style="font-size: 16px; border-bottom: 1px solid ${i}; padding-bottom: 5px; margin-bottom: 10px; color: ${n};">Bill To:</h2>
+          <h2 style="font-size: 16px; border-bottom: 1px solid ${i}; padding-bottom: 5px; margin-bottom: 10px; color: ${a};">Bill To:</h2>
           <p style="margin: 2px 0; font-weight: bold;">${t.customer.name}</p>
           <p style="margin: 2px 0;">${t.customer.address}</p>
         </section>
-      `, $ = `
+      `, k = `
         <div style="margin-top: 50px; text-align: right; border-top: 1px solid ${i}; padding-top: 10px;">
           <p style="margin: 2px 0;">Subtotal: ${o(
         t.subtotal
       )}</p>
           <p style="margin: 2px 0;">Tax: ${o(t.tax)}</p>
-          <h3 style="margin: 5px 0; color: ${n};">GRAND TOTAL: ${o(
+          <h3 style="margin: 5px 0; color: ${a};">GRAND TOTAL: ${o(
         t.total
       )}</h3>
         </div>
-      `, W = E ? `
+      `, C = E ? `
         <div style="margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 10px; display: flex; justify-content: space-around; font-size: 10px;">
           <div style="text-align: center;">
             <div style="height: 30px; border-bottom: 1px solid #000; margin-bottom: 5px; width: 150px;"></div>
@@ -2024,13 +1983,13 @@ const We = ({
           </div>
           <div style="text-align: center;">
             <div style="height: 30px; border-bottom: 1px solid #000; margin-bottom: 5px; width: 150px;"></div>
-            <p>Authorized by: ${w || "N/A"}</p>
+            <p>Authorized by: ${N || "N/A"}</p>
           </div>
         </div>
       ` : "";
       return `
         <div style="padding: 15mm 10mm; font-size: 12px; min-height: 270mm; box-sizing: border-box; text-align: left;">
-          <header style="border-bottom: 3px solid ${n}; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; background-color: ${x}; color: ${n};">
+          <header style="border-bottom: 3px solid ${a}; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; background-color: ${x}; color: ${a};">
             <h1 style="font-size: 24px; margin: 0;">INVOICE</h1>
             <div style="text-align: right; color: #000;">
                 <p style="margin: 2px 0; font-weight: bold;">${d || "React Solutions Ltd."}</p>
@@ -2040,59 +1999,59 @@ const We = ({
           </header>
           ${j}
           ${h}
-          ${$}
-          ${W}
+          ${k}
+          ${C}
         </div>
       `;
     }
     case 5:
-      const k = `
-        <div style="border: 2px solid ${n}; padding: 10px; margin: 10px 0; text-align: ${l};">
-            <h2 style="margin: 0 0 5px 0; font-size: 1.1em; color: ${n};">ORDER SUMMARY</h2>
+      const S = `
+        <div style="border: 2px solid ${a}; padding: 10px; margin: 10px 0; text-align: ${l};">
+            <h2 style="margin: 0 0 5px 0; font-size: 1.1em; color: ${a};">ORDER SUMMARY</h2>
             ${b}
         </div>
-      `, L = `
+      `, z = `
         <h2 
-          style="font-size: 1.6em; margin: 10px 0; padding: 5px 0; border-top: 3px double ${n}; text-align: ${l}; color: ${n}; font-weight: 900;"
+          style="font-size: 1.6em; margin: 10px 0; padding: 5px 0; border-top: 3px double ${a}; text-align: ${l}; color: ${a}; font-weight: 900;"
         >
             TOTAL: ${o(t.total)}
         </h2>
       `;
       return `
         <header style="padding: 10px 0; background-color: ${x};">
-          ${y(d, n)}
+          ${y(d, a)}
           <p style="margin: 2px 0; font-size: 0.9em;">Transaction ID: ${t.id}</p>
           <p style="margin: 2px 0; font-size: 0.9em;">Customer: ${t.customer.name}</p>
         </header>
-        ${k}
+        ${S}
         ${h}
-        ${L}
+        ${z}
       `;
     case 6: {
       const j = t.items.map(
-        ($) => `
+        (k) => `
         <tr style="border-bottom: 1px dashed ${i};">
-          <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em; width: 10%;">${$.quantity}X</td>
-          <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em;">${$.name}</td>
+          <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em; width: 10%;">${k.quantity}X</td>
+          <td style="text-align: left; padding: 5px 0; font-weight: bold; font-size: 1.2em;">${k.name}</td>
         </tr>
       `
       ).join("");
       return `
-        <header style="border-bottom: 2px solid ${n}; padding-bottom: 5px; margin-bottom: 10px;">
-          <h1 style="font-size: 1.6em; margin: 5px 0; color: ${n};">KITCHEN ORDER TICKET</h1>
+        <header style="border-bottom: 2px solid ${a}; padding-bottom: 5px; margin-bottom: 10px;">
+          <h1 style="font-size: 1.6em; margin: 5px 0; color: ${a};">KITCHEN ORDER TICKET</h1>
           <p style="margin: 2px 0;">Order #: <span style="font-weight: bold; font-size: 1.2em;">${t.id}</span></p>
         </header>
         <table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 10px; font-size: 1em;">
           <tbody>${j}</tbody>
         </table>
-        <p style="font-size: 1.2em; margin-top: 20px; border-top: 1px solid ${n}; padding-top: 5px;">
+        <p style="font-size: 1.2em; margin-top: 20px; border-top: 1px solid ${a}; padding-top: 5px;">
           <span style="font-weight: bold; color: red;">NOTES:</span> COOK WELL
         </p>
       `;
     }
     case 7:
-      const v = `
-        <div style="background-color: #F0FFF0; border: 1px solid ${n}; padding: 8px; margin-bottom: 10px;">
+      const D = `
+        <div style="background-color: #F0FFF0; border: 1px solid ${a}; padding: 8px; margin-bottom: 10px;">
             <h3 style="margin: 0; font-size: 1.1em; color: green;">🎉 SPECIAL OFFER! 🎉</h3>
             <p style="margin: 2px 0; font-size: 0.9em;">You saved ${o(
         t.tax / 2
@@ -2101,15 +2060,15 @@ const We = ({
       `;
       return `
         <header style="padding: 5px 0; border-bottom: 1px solid ${i}; margin-bottom: 10px;">
-            ${y(d, n)}
+            ${y(d, a)}
             <p style="margin: 2px 0; font-size: 0.9em;">Date: ${new Date(
         t.date
       ).toLocaleDateString()}</p>
         </header>
-        ${v}
+        ${D}
         ${h}
         ${b}
-        <h2 style="font-size: 1.5em; margin: 10px 0; color: ${n};">TOTAL: ${o(
+        <h2 style="font-size: 1.5em; margin: 10px 0; color: ${a};">TOTAL: ${o(
         t.total
       )}</h2>
         <p style="font-size: 0.8em; margin-top: 10px;">Visit us online at example.com!</p>
@@ -2124,14 +2083,14 @@ const We = ({
       ).toLocaleDateString()}</p>
             </div>
             <div style="text-align: right; font-weight: bold;">
-                <p style="margin: 2px 0; color: ${n};">Order Ref: ${t.id}</p>
+                <p style="margin: 2px 0; color: ${a};">Order Ref: ${t.id}</p>
             </div>
         </div>
       `;
       return `
-        <header style="background-color: ${x}; padding: 10px 5px; border-bottom: 3px solid ${n};">
-          <p style="margin: 0; font-size: 0.9em; text-transform: uppercase; color: ${n};">${d || "INVOICE"}</p>
-          <h1 style="font-size: 1.8em; margin: 5px 0 0 0; color: #000;">${w || "Finance Tracker"}</h1>
+        <header style="background-color: ${x}; padding: 10px 5px; border-bottom: 3px solid ${a};">
+          <p style="margin: 0; font-size: 0.9em; text-transform: uppercase; color: ${a};">${d || "INVOICE"}</p>
+          <h1 style="font-size: 1.8em; margin: 5px 0 0 0; color: #000;">${N || "Finance Tracker"}</h1>
         </header>
         ${m}
         ${h}
@@ -2139,13 +2098,13 @@ const We = ({
       `;
     case 9:
       const p = `
-        <h2 style="font-size: 1.5em; margin: 10px 0; padding-bottom: 5px; border-bottom: 3px double ${n}; color: ${n};">
+        <h2 style="font-size: 1.5em; margin: 10px 0; padding-bottom: 5px; border-bottom: 3px double ${a}; color: ${a};">
             GRAND TOTAL: ${o(t.total)}
         </h2>
       `;
       return `
-        <header style="padding: 10px 0; border-bottom: 3px solid ${n}; margin-bottom: 15px;">
-            ${y(d, n)}
+        <header style="padding: 10px 0; border-bottom: 3px solid ${a}; margin-bottom: 15px;">
+            ${y(d, a)}
             <p style="margin: 2px 0; font-size: 0.9em;">Ref: ${t.id}</p>
         </header>
         <section style="margin-bottom: 15px;">
@@ -2160,13 +2119,13 @@ const We = ({
     case 10:
       return `
         ${`
-        <div style="padding: 10px; background-color: ${n}; border-radius: 10px 10px 0 0; text-align: ${l};">
+        <div style="padding: 10px; background-color: ${a}; border-radius: 10px 10px 0 0; text-align: ${l};">
           <p style="margin: 0; font-size: 0.8em; color: #fff;">TICKET NUMBER:</p>
           <h1 style="font-size: 1.6em; margin: 5px 0 0 0; color: #fff;">#${t.id}</h1>
         </div>
       `}
         <header style="padding: 10px 0; border-bottom: 2px solid ${i}; margin-bottom: 10px; text-align: ${l};">
-          ${y(d, n)}
+          ${y(d, a)}
           <p style="margin: 2px 0;">Date: ${new Date(
         t.date
       ).toLocaleDateString()}</p>
@@ -2177,9 +2136,9 @@ const We = ({
     case 11:
       return `
         ${`
-        <header style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid ${n}; margin-bottom: 10px;">
+        <header style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid ${a}; margin-bottom: 10px;">
             <div style="text-align: left;">
-                <h1 style="font-size: 1.2em; margin: 0; color: ${n};">${d || "The Shop"}</h1>
+                <h1 style="font-size: 1.2em; margin: 0; color: ${a};">${d || "The Shop"}</h1>
                 <p style="margin: 2px 0; font-size: 0.8em;">Receipt</p>
             </div>
             <div style="text-align: right;">
@@ -2194,43 +2153,43 @@ const We = ({
         ${b}
       `;
     case 12:
-      const P = `
-        <div style="border: 1px solid ${n}; padding: 8px; margin: 10px 0; background-color: ${x};">
+      const M = `
+        <div style="border: 1px solid ${a}; padding: 8px; margin: 10px 0; background-color: ${x};">
             ${b}
         </div>
-        <h2 style="font-size: 1.5em; margin: 5px 0; color: ${n}; text-align: ${l};">TOTAL: ${o(
+        <h2 style="font-size: 1.5em; margin: 5px 0; color: ${a}; text-align: ${l};">TOTAL: ${o(
         t.total
       )}</h2>
       `;
       return `
         <header style="padding: 5px 0; margin-bottom: 10px; border-bottom: 1px dashed ${i};">
-          ${y(d, n)}
+          ${y(d, a)}
           <p style="margin: 2px 0; font-size: 0.9em;">Transaction: ${t.id}</p>
         </header>
         ${h}
-        ${P}
+        ${M}
       `;
     case 13:
-      const F = `
+      const W = `
         <div style="margin-top: 10px; padding: 5px 0; border-top: 1px solid ${i}; text-align: ${l};">
-          <p style="font-weight: bold; font-size: 1.1em; color: ${n};">Total Payable:</p>
-          <h2 style="font-size: 2em; margin: 2px 0; color: ${n};">${o(
+          <p style="font-weight: bold; font-size: 1.1em; color: ${a};">Total Payable:</p>
+          <h2 style="font-size: 2em; margin: 2px 0; color: ${a};">${o(
         t.total
       )}</h2>
         </div>
       `;
       return `
-        <header style="padding: 10px 0; border-bottom: 5px double ${n}; margin-bottom: 10px;">
-          <h1 style="font-size: 1.6em; margin: 0; color: ${n};">${d || "Item Focus Receipt"}</h1>
+        <header style="padding: 10px 0; border-bottom: 5px double ${a}; margin-bottom: 10px;">
+          <h1 style="font-size: 1.6em; margin: 0; color: ${a};">${d || "Item Focus Receipt"}</h1>
           <p style="margin: 5px 0 0 0; font-size: 0.8em;">Order: ${t.id} | Date: ${new Date(t.date).toLocaleDateString()}</p>
         </header>
         <p style="margin: 5px 0; font-weight: bold; text-align: left;">Items Purchased:</p>
         ${h}
         ${b}
-        ${F}
+        ${W}
       `;
     case 14:
-      const z = `
+      const I = `
         <section style="margin-bottom: 15px; border: 1px dashed ${i}; padding: 8px; text-align: left;">
             <p style="margin: 2px 0; font-weight: bold;">Shipping To:</p>
             <p style="margin: 2px 0; font-size: 0.9em;">${t.customer.name}</p>
@@ -2239,18 +2198,18 @@ const We = ({
         </section>
       `;
       return `
-        <header style="padding: 10px 0; background-color: ${n}; color: #fff; margin-bottom: 15px; text-align: ${l};">
+        <header style="padding: 10px 0; background-color: ${a}; color: #fff; margin-bottom: 15px; text-align: ${l};">
           <h1 style="font-size: 1.5em; margin: 0;">${d || "Online Order Receipt"}</h1>
           <p style="margin: 2px 0; font-size: 0.9em;">Order placed: ${new Date(
         t.date
       ).toLocaleDateString()}</p>
         </header>
-        ${z}
+        ${I}
         ${h}
         ${b}
       `;
     case 15:
-      const B = `
+      const F = `
         <header style="padding: 10px 0; margin-bottom: 15px; text-align: ${l};">
           <h1 style="font-size: 1.2em; margin: 0; text-transform: none;">${d || "Receipt"}</h1>
           <p style="margin: 5px 0; border-top: 1px dashed ${i}; padding-top: 5px; font-size: 0.9em;">
@@ -2259,29 +2218,29 @@ const We = ({
       ).toLocaleDateString()}
           </p>
         </header>
-      `, M = `
+      `, H = `
         <h2 style="font-size: 1.4em; margin: 5px 0; border-top: 1px dashed ${i}; padding-top: 5px; text-align: ${l};">
             Total: ${o(t.total)}
         </h2>
       `;
       return `
-        ${B}
+        ${F}
         ${h}
         <section style="margin-top: 10px; border-top: 1px dashed ${i}; padding-top: 5px;">
             ${b}
         </section>
-        ${M}
+        ${H}
       `;
     case 16: {
-      const j = "#FF9800", $ = `
-        <header style="padding: 15px 0; background-color: ${n}; color: #fff; border-bottom: 3px solid ${j}; text-align: ${l};">
+      const j = "#FF9800", k = `
+        <header style="padding: 15px 0; background-color: ${a}; color: #fff; border-bottom: 3px solid ${j}; text-align: ${l};">
           <h1 style="font-size: 1.6em; margin: 0; text-transform: uppercase; letter-spacing: 2px;">${d || "TROPICAL SALES"}</h1>
           <p style="margin: 5px 0 0 0; font-size: 0.9em; font-weight: bold;">Order: ${t.id}</p>
         </header>
         <div style="background-color: ${j}20; padding: 5px; margin: 10px 0; text-align: ${l};">
             <p style="margin: 0; font-size: 0.9em; color: ${j}; font-weight: bold;">Thank You, ${t.customer.name}!</p>
         </div>
-      `, W = `
+      `, C = `
         <div style="margin-top: 10px; padding: 8px; background-color: ${j}; color: #fff;">
             <h2 style="font-size: 1.8em; margin: 0; display: flex; justify-content: space-between;">
                 <span>GRAND TOTAL</span>
@@ -2290,16 +2249,16 @@ const We = ({
         </div>
       `;
       return `
-        ${$}
+        ${k}
         ${h}
         ${b}
-        ${W}
+        ${C}
       `;
     }
     default:
       return `
         <header style="border-bottom: 1px solid ${i}; padding-bottom: 5px; margin-bottom: 10px; background-color: ${x}; text-align: ${l};">
-          <h1 style="font-size: 1.4em; margin: 5px 0; color: ${n};">Layout ${r} - Custom Type</h1>
+          <h1 style="font-size: 1.4em; margin: 5px 0; color: ${a};">Layout ${r} - Custom Type</h1>
           <p style="margin: 2px 0;">(Fallback: No specific HTML structure defined.)</p>
         </header>
         ${h}
@@ -2310,33 +2269,37 @@ const We = ({
   const {
     layout: l,
     alignment: r,
-    primaryColor: n,
+    primaryColor: a,
     textColor: i,
     borderColor: d,
     baseFontSize: x,
-    paperSize: w,
+    paperSize: N,
     fontFamily: E,
-    logoUrl: S,
-    footerText: O,
+    logoUrl: v,
+    footerText: L,
     sellerName: h,
     showSignature: y,
-    customCss: b
+    customCss: b,
+    currency: R,
+    locale: S,
+    currencyDisplay: z
   } = s;
   return { printReceipt: de(() => {
     if (!t || !t.items.length) {
       console.error("Cannot print: Order data is missing or empty.");
       return;
     }
-    const k = r === "start" ? "left" : r === "end" ? "right" : "center", L = V["58mm"] || V["58mm"], v = w === "a4" || w === "letter", m = window.screen.width, p = window.screen.height, C = Math.max(700, Math.floor(m * 0.5)), R = Math.max(600, Math.floor(p * 0.7)), P = Ue(t, s, k), F = S && !v ? `<img src="${S}" alt="Logo" style="max-width: 100%; max-height: 50px; margin: 5px auto; display: block;" onerror="this.style.display='none';">` : "", z = !v && l !== 6 ? `
+    const m = r === "start" ? "left" : r === "end" ? "right" : "center", p = J["58mm"] || J["58mm"], T = N === "a4" || N === "letter", A = window.screen.width, M = window.screen.height, W = Math.max(700, Math.floor(A * 0.5)), I = Math.max(600, Math.floor(M * 0.7)), F = Ye(t, s, m), H = v && !T ? `<img src="${v}" alt="Logo" style="max-width: 100%; max-height: 50px; margin: 5px auto; display: block;" onerror="this.style.display='none';">` : "", j = !T && l !== 6 ? `
         <!-- Consistent Total -->
         <h2 class="grand-total-style">
             <span>GRAND TOTAL:</span>
-            <span style="font-weight: 900;">${o(
-      t.total
-    )}</span>
-        </h2>
-    ` : "", B = v ? "" : `
-      <p style="margin-top: 10px;">${O || "Thank you for shopping!"}</p>
+        </h2<span style="font-weight: 900;">${o(t.total, {
+      currency: R,
+      locale: S,
+      currencyDisplay: z
+    })}</span>>
+    ` : "", k = T ? "" : `
+      <p style="margin-top: 10px;">${L || "Thank you for shopping!"}</p>
       ${y ? `
         <div style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 10px; text-align: center; font-size: 0.8em;">
           <div style="height: 15px; border-bottom: 1px solid #000; margin-bottom: 5px; width: 80%; margin: 0 auto;"></div>
@@ -2344,63 +2307,63 @@ const We = ({
         </div>
       ` : ""}
       <p style="font-size: 0.777em; margin: 5px 0;">${(/* @__PURE__ */ new Date()).toLocaleString()}</p>
-    `, M = v ? P : `
+    `, C = T ? F : `
         <div id="receipt-content-target">
+            ${H}
             ${F}
-            ${P}
-            ${z}
-            ${B}
+            ${j}
+            ${k}
         </div>
-    `, j = `
+    `, U = `
       <!DOCTYPE html>
       <html>
       <head>
           <title>Receipt Print</title>
           <style>
-              @page { 
-                size: ${v ? w : "auto"}; 
-                margin: ${v ? "15mm" : "0"}; 
+              @page {
+                size: ${T ? N : "auto"};
+                margin: ${T ? "15mm" : "0"};
               }
-              body { 
-                margin: 0; 
-                padding: 0; 
+              body {
+                margin: 0;
+                padding: 0;
                 font-family: ${E};
                 color: ${i}; /* Global text color */
               }
               #receipt-content-target {
-                  width: ${L.width};
-                  max-width: ${L.width}; /* Crucial fix for big window stretching on POS sizes */
+                  width: ${p.width};
+                  max-width: ${p.width}; /* Crucial fix for big window stretching on POS sizes */
                   font-size: ${x}px;
                   line-height: 1.2;
                   padding: 5px;
                   margin: 0 auto;
-                  text-align: ${k};
+                  text-align: ${m};
                   box-sizing: content-box;
               }
               /* Ensure A4/Letter size uses 100% width and default document margins */
-              ${v ? `
-                #receipt-content-target { 
-                    width: 100%; 
+              ${T ? `
+                #receipt-content-target {
+                    width: 100%;
                     max-width: 100%;
                     padding: 0;
                     margin: 0;
                     text-align: left; /* Default for documents */
                 }
               ` : ""}
-              
+
               table { width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 10px; }
               th, td { padding: 2px 0; }
-              
+
               /* Apply dynamic color to the Grand Total section */
               .grand-total-style {
-                font-size: 1.222em; 
-                margin: 5px 0; 
-                display: flex; 
-                justify-content: space-between; 
-                border-top: 1px solid ${n}; 
-                border-bottom: 1px solid ${n}; 
-                padding: 4px 0; 
-                color: ${n};
+                font-size: 1.222em;
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid ${a};
+                border-bottom: 1px solid ${a};
+                padding: 4px 0;
+                color: ${a};
               }
 
               @media print {
@@ -2412,16 +2375,16 @@ const We = ({
           </style>
       </head>
       <body>
-        ${M}
+        ${C}
       </body>
       </html>
-    `, $ = window.open(
+    `, O = window.open(
       "",
       "_blank",
-      `height=${R},width=${C}`
+      `height=${I},width=${W}`
     );
-    $ ? ($.document.write(j), $.document.close(), $.onload = () => {
-      $.print(), v || setTimeout(() => $.close(), 1e3);
+    O ? (O.document.write(U), O.document.close(), O.onload = () => {
+      O.print(), T || setTimeout(() => O.close(), 1e3);
     }) : console.warn(
       "Could not open print window. Check pop-up blocker settings."
     );

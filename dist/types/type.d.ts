@@ -42,16 +42,23 @@ export interface PrintOptions {
     showSignature: boolean;
     showTaxBreakdown: boolean;
     customCss: string;
+    currency?: string;
+    locale?: string;
+    currencyDisplay?: "symbol" | "code" | "name";
 }
 export interface LayoutProps extends PrintOptions {
     order: Order;
     alignStyle: "left" | "center" | "right";
     formatItemTotal: (item: Item) => string;
 }
-export declare const formatCurrency: (amount: number) => string;
-export interface ReceiptContentProps extends PrintOptions {
+export interface ReceiptContentProps extends Partial<PrintOptions> {
     order: Order;
 }
+export declare const formatCurrency: (amount: number, opts?: {
+    currency?: string;
+    locale?: string;
+    currencyDisplay?: "symbol" | "code" | "name";
+}) => string;
 export declare const ReceiptContent: React.NamedExoticComponent<ReceiptContentProps>;
 export interface DemoContainerProps {
     title: string;
