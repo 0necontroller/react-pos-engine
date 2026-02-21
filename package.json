@@ -1,6 +1,6 @@
 {
-  "name": "react-pos-engine",
-  "version": "2.1.6",
+  "name": "react-receipts",
+  "version": "3.0.0",
   "description": "A powerful React POS (Point-of-Sale) printing engine with customizable receipt templates and layout options.",
   "author": "Mohammad Ali Nayeem",
   "license": "MIT",
@@ -47,15 +47,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kazinayeem/react-pos-engine"
+    "url": "https://github.com/0necontroller/react-receipts"
   },
   "bugs": {
-    "url": "https://github.com/kazinayeem/react-pos-engine/issues"
+    "url": "https://github.com/0necontroller/react-receipts/issues"
   },
-  "homepage": "https://github.com/kazinayeem/react-pos-engine#readme",
+  "homepage": "https://github.com/0necontroller/react-receipts#readme",
   "type": "module",
-  "main": "dist/react-pos-engine.umd.js",
-  "module": "dist/react-pos-engine.es.js",
+  "main": "dist/react-receipts.umd.js",
+  "module": "dist/react-receipts.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -76,7 +76,7 @@
     "@types/node": "^24.9.2",
     "lucide-react": "^0.552.0",
     "path": "^0.12.7",
-    "react-pos-engine": "^1.0.1"
+    "react-recepts": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.2",

@@ -23,6 +23,9 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
     sellerName,
     showSignature,
     customCss,
+    currency,
+    locale,
+    currencyDisplay,
   } = options;
 
   const printReceipt = useCallback(() => {
@@ -56,10 +59,11 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
         <!-- Consistent Total -->
         <h2 class="grand-total-style">
             <span>GRAND TOTAL:</span>
-            <span style="font-weight: 900;">${formatCurrency(
-              orderData.total
-            )}</span>
-        </h2>
+        </h2<span style="font-weight: 900;">${formatCurrency(orderData.total, {
+          currency: currency,
+          locale: locale,
+          currencyDisplay: currencyDisplay,
+        })}</span>>
     `
         : "";
     const footerHtml = !isDocumentSize
@@ -100,13 +104,13 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
       <head>
           <title>Receipt Print</title>
           <style>
-              @page { 
-                size: ${isDocumentSize ? paperSize : "auto"}; 
-                margin: ${isDocumentSize ? "15mm" : "0"}; 
+              @page {
+                size: ${isDocumentSize ? paperSize : "auto"};
+                margin: ${isDocumentSize ? "15mm" : "0"};
               }
-              body { 
-                margin: 0; 
-                padding: 0; 
+              body {
+                margin: 0;
+                padding: 0;
                 font-family: ${fontFamily};
                 color: ${textColor}; /* Global text color */
               }
@@ -126,8 +130,8 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
               ${
                 isDocumentSize
                   ? `
-                #receipt-content-target { 
-                    width: 100%; 
+                #receipt-content-target {
+                    width: 100%;
                     max-width: 100%;
                     padding: 0;
                     margin: 0;
@@ -136,19 +140,19 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
               `
                   : ""
               }
-              
+
               table { width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 10px; }
               th, td { padding: 2px 0; }
-              
+
               /* Apply dynamic color to the Grand Total section */
               .grand-total-style {
-                font-size: 1.222em; 
-                margin: 5px 0; 
-                display: flex; 
-                justify-content: space-between; 
-                border-top: 1px solid ${primaryColor}; 
-                border-bottom: 1px solid ${primaryColor}; 
-                padding: 4px 0; 
+                font-size: 1.222em;
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid ${primaryColor};
+                border-bottom: 1px solid ${primaryColor};
+                padding: 4px 0;
                 color: ${primaryColor};
               }
 
@@ -170,7 +174,7 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
     const printWindow = window.open(
       "",
       "_blank",
-      `height=${printWindowHeight},width=${printWindowWidth}`
+      `height=${printWindowHeight},width=${printWindowWidth}`,
     );
     if (printWindow) {
       printWindow.document.write(receiptHtml);
@@ -184,7 +188,7 @@ export const useReceiptPrint = (orderData: Order, options: PrintOptions) => {
       };
     } else {
       console.warn(
-        "Could not open print window. Check pop-up blocker settings."
+        "Could not open print window. Check pop-up blocker settings.",
       );
     }
   }, [orderData, options]);

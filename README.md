@@ -1,23 +1,22 @@
-# 🧾 React POS Engine
+# 🧾 React Receipts
 
 <div align="center">
 
-![React POS Engine](https://img.shields.io/badge/React-POS%20Engine-blue)
+![React Receipts](https://img.shields.io/badge/React-Receipts-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Node](https://img.shields.io/badge/Node-v14+-green)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
-![Author](https://img.shields.io/badge/Author-Kazi%20Nayeem-orange)
-![Company](https://img.shields.io/badge/Company-Bornosoft%20RN-purple)
 
 </div>
 
 <div align="center">
   <h3>A Professional POS Receipt Generator for React Applications</h3>
-  <p>Developed with ❤️ by <a href="https://github.com/kazinayeem">Kazi Nayeem</a> | <a href="https://bornosoftnr.com/">Bornosoft RN</a></p>
 </div>
 
 ## Overview
+
+> **Note:** This is a fork of the original [react-pos-engine](https://www.npmjs.com/package/react-pos-engine). It has been updated to add options for dynamic currency formatting.
 
 React POS Engine is your complete solution for POS and invoice printing in React applications. Built with TypeScript and modern best practices, it offers:
 
@@ -119,9 +118,9 @@ React POS Engine is your complete solution for POS and invoice printing in React
 
 Install the package using your preferred package manager:
 
-```bash
+````bash
 # Using npm
-npm install react-pos-engine
+npm install react-receipts
 
 
 
@@ -130,13 +129,13 @@ npm install react-pos-engine
 1. **Import the Package**
 
 ```typescript
-import { useReceiptPrint } from "react-pos-engine";
-```
+import { useReceiptPrint } from "react-receipts";
+````
 
 2. **Configure Types** (TypeScript)
 
 ```typescript
-import type { Order, PrintOptions } from "react-pos-engine";
+import type { Order, PrintOptions } from "react-receipts";
 ```
 
 3. **Add to Your Project**
@@ -191,23 +190,29 @@ const MOCK_ORDER: Order = {
 
 ### Basic Implementation Example
 
-````tsx
-import React, { useMemo } from 'react';
-import { useReceiptPrint, type Order, type PrintOptions } from 'react-pos-engine';
+```tsx
+import React, { useMemo } from "react";
+import { useReceiptPrint, type Order, type PrintOptions } from "react-receipts";
 
 const ReceiptPrintButton = ({ currentOrder }: { currentOrder: Order }) => {
-  const printOptions: PrintOptions = useMemo(() => ({
-    layout: 2,                // Layout 2: Detailed POS w/ Custom Fields
-    alignment: 'center',
-    primaryColor: '#2563EB',
-    textColor: '#000000',
-    paperSize: '80mm',       // Standard 80mm receipt paper
-    customCss: '',          // Optional custom styles
-    baseFontSize: 12,
-    fontFamily: 'Arial',
-  }), []);
+  const printOptions: PrintOptions = useMemo(
+    () => ({
+      layout: 2, // Layout 2: Detailed POS w/ Custom Fields
+      alignment: "center",
+      primaryColor: "#2563EB",
+      textColor: "#000000",
+      paperSize: "80mm", // Standard 80mm receipt paper
+      customCss: "", // Optional custom styles
+      baseFontSize: 12,
+      fontFamily: "Arial",
+    }),
+    [],
+  );
 
-  const { printReceipt, ReceiptContent } = useReceiptPrint(currentOrder, printOptions);
+  const { printReceipt, ReceiptContent } = useReceiptPrint(
+    currentOrder,
+    printOptions,
+  );
 
   return (
     <div>
@@ -215,10 +220,7 @@ const ReceiptPrintButton = ({ currentOrder }: { currentOrder: Order }) => {
       <ReceiptContent order={currentOrder} {...printOptions} />
 
       {/* Print Trigger Button */}
-      <button
-        onClick={printReceipt}
-        disabled={!currentOrder.items.length}
-      >
+      <button onClick={printReceipt} disabled={!currentOrder.items.length}>
         Print Receipt
       </button>
     </div>
@@ -226,22 +228,20 @@ const ReceiptPrintButton = ({ currentOrder }: { currentOrder: Order }) => {
 };
 
 export default ReceiptPrintButton;
-
-
-
-
+```
 
 ## 📋 API Reference
 
 ### Type Definitions
 
 #### 🛍️ Order Interface
+
 The core data structure for receipt content:
 
 ```typescript
 interface Item {
   name: string;
-  price: number;      // in cents
+  price: number; // in cents
   quantity: number;
 }
 
@@ -254,7 +254,7 @@ interface Customer {
 
 interface Order {
   id: string;
-  date: number;       // Timestamp
+  date: number; // Timestamp
   items: Item[];
   subtotal: number;
   tax: number;
@@ -267,17 +267,17 @@ interface Order {
   notes: string;
   loyaltyPoints?: number;
 }
-````
+```
 
 #### ⚙️ PrintOptions Interface
 
 Customize the appearance and behavior of your receipts:
 
-````typescript
+```typescript
 interface PrintOptions {
-  layout: number;     // 1-20 (see layouts table below)
-  paperSize: '58mm' | '80mm' | '100mm' | 'a4' | 'letter';
-  alignment: 'start' | 'center' | 'end';
+  layout: number; // 1-20 (see layouts table below)
+  paperSize: "58mm" | "80mm" | "100mm" | "a4" | "letter";
+  alignment: "start" | "center" | "end";
   primaryColor: string;
   baseFontSize: number;
   fontFamily: string;
@@ -289,9 +289,13 @@ interface PrintOptions {
   showCustomerPhone?: boolean;
   showNotes?: boolean;
   customCss?: string;
+
+  // Currency
+  currency?: string; // e.g. "KES", "USD", "EUR"
+  locale?: string; // e.g. "en-KE", "en-US"
+  currencyDisplay?: "symbol" | "code" | "name"; // choose "code" to show "KES"
 }
-
-
+```
 
 ## 🎨 Layouts (1–16)
 
@@ -301,8 +305,8 @@ How to switch: pass `layout` to the `useReceiptPrint` hook or `ReceiptContent` c
 
 ```tsx
 // Switch to layout 9
-const options = { layout: 9, /* other options */ };
-<ReceiptContent order={order} {...options} />
+const options = { layout: 9 /* other options */ };
+<ReceiptContent order={order} {...options} />;
 ```
 
 Summary of layouts (1–16):
@@ -343,13 +347,15 @@ const [layout, setLayout] = useState<number>(1);
 // toggling
 <select value={layout} onChange={(e) => setLayout(Number(e.target.value))}>
   {Array.from({ length: 16 }).map((_, i) => (
-    <option key={i} value={i + 1}>Layout {i + 1}</option>
+    <option key={i} value={i + 1}>
+      Layout {i + 1}
+    </option>
   ))}
-</select>
+</select>;
 
 // pass to hook / component
 const options = { layout };
-<ReceiptContent order={order} {...options} />
+<ReceiptContent order={order} {...options} />;
 ```
 
 Advanced styling and customization
@@ -362,7 +368,6 @@ Want a gallery page? See `src/components/DemoContainer.tsx` — you can create a
 
 ---
 
-
 ## 🤝 Contributing
 
 ### How to Contribute
@@ -371,9 +376,10 @@ We love your input! We want to make contributing to React POS Engine as easy and
 
 1. 🍴 Fork the repository
 2. 🌿 Create your feature branch
+
    ```bash
    git checkout -b feature/AmazingFeature
-````
+   ```
 
 3. 💻 Make your changes
 4. ✅ Commit with clear messages
@@ -407,13 +413,15 @@ Found a bug? We're here to help! Please include:
 - Example scenarios
 - Potential implementation ideas (optional)
 
-## Screenshort 
+## Screenshort
+
 ![Demo Screenshot](https://i.ibb.co.com/6RCnnhNp/Screenshot-2025-11-04-200216.png)
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🌟 Support
+## 🌟 Support Creator
 
 If you find this project helpful, please consider:
 
@@ -424,16 +432,14 @@ If you find this project helpful, please consider:
 ---
 
 <div align="center">
-Crafted with ❤️ by <a href="https://github.com/kazinayeem">Kazi Nayeem</a> at <a href="https://bornosoftnr.com/">Bornosoft RN</a>
+Created with ❤️ by <a href="https://github.com/kazinayeem">Kazi Nayeem</a> at <a href="https://bornosoftnr.com/">Bornosoft RN</a>
 
-[Documentation](https://bornosoftrn.com/docs/react-pos-engine) ·
-[Report Bug](https://github.com/kazinayeem/react-pos-engine/issues) ·
-[Request Feature](https://github.com/kazinayeem/react-pos-engine/issues) ·
-[npm Package](https://www.npmjs.com/package/react-pos-engine)
+[Report Bug](https://github.com/kazinayeem/react-receipts/issues) ·
+[Request Feature](https://github.com/kazinayeem/react-receipts/issues) ·
+[npm Package](https://www.npmjs.com/package/react-receipts)
 
 </div>
 
 <div align="center">
   <sub>If this project helped you, please consider giving it a ⭐️</sub>
 </div>
-```
